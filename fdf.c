@@ -19,9 +19,19 @@ void		ft_swap(int *a, int *b)
 	*a -= *b;
 }
 
-void brighteness(int color, float k)
+int		 brightness(int color, float k)
 {
+	int	r, g, b, tail, res;
 
+	r = R & color;
+	g = G & color;
+	b = B & color;
+	r = round((float)r * k);
+	g = round((float)g * k);
+	b = round((float)b * k);
+	tail = color & 0x010101;
+	res = r | g | b | tail;
+	return (res);
 }
 
 void		draw_wu_line(t_mlx win, t_line l)
@@ -47,12 +57,25 @@ void		draw_wu_line(t_mlx win, t_line l)
 	grad = dy / dx;
 	y = l.y0 + grad;
 	x = l.x0 + 1;
-	for (x <= x1 - 1)
-	{//интенсивность и цвет
-		DrawPoint(steep, x, (int)y, 1 - (y - (int)y));
-		mlx_pixel_put(win.mp, win.wp, x, (int)y, color)
-		DrawPoint(steep, x, (int)y + 1, y - (int)y);
-		y += gradient;
-		x++
+//	for (x <= x1 - 1)
+//	{//интенсивность и цвет
+//		DrawPoint(steep, x, (int)y, 1 - (y - (int)y));
+//		mlx_pixel_put(win.mp, win.wp, x, (int)y, color)
+//		DrawPoint(steep, x, (int)y + 1, y - (int)y);
+//		y += gradient;
+//		x++
+//	}
+	
+}
+
+#include <stdio.h>
+
+void	main(void)
+{
+	printf(" brightness test:\n");
+	printf(" original color: %X\n", LIME);
+	for( int i = 0; i / 10 < 1; i++)
+	{
+		printf(" new: %X\n", brightness(LIME, (float)(i / 10)));
 	}
 }
