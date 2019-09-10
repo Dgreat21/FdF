@@ -6,11 +6,12 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:03:49 by dgreat            #+#    #+#             */
-/*   Updated: 2019/09/05 23:36:02 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/09/10 03:14:08 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdio.h>
 
 void		ft_swap(int *a, int *b)
 {
@@ -26,11 +27,16 @@ int		 brightness(int color, float k)
 	r = R & color;
 	g = G & color;
 	b = B & color;
+
+	r /= 65536;
+	g /= 256;
 	r = round((float)r * k);
 	g = round((float)g * k);
 	b = round((float)b * k);
-	tail = color & 0x010101;
-	res = r | g | b | tail;
+	r *= 65536;
+	g *= 256;
+
+	res = r | g | b;
 	return (res);
 }
 
@@ -57,25 +63,39 @@ void		draw_wu_line(t_mlx win, t_line l)
 	grad = dy / dx;
 	y = l.y0 + grad;
 	x = l.x0 + 1;
-//	for (x <= x1 - 1)
-//	{//интенсивность и цвет
-//		DrawPoint(steep, x, (int)y, 1 - (y - (int)y));
-//		mlx_pixel_put(win.mp, win.wp, x, (int)y, color)
-//		DrawPoint(steep, x, (int)y + 1, y - (int)y);
-//		y += gradient;
-//		x++
-//	}
+	while (x <= l.x1 - 1)
+	{
+		mlx_pixel_put(win.mp, win.wp, x, (int)y, brightness(l.color, 1 - (y - (int)y)));
+		mlx_pixel_put(win.mp, win.wp, x, (int)y +1, brightness(l.color, y - (int)y));
+		y += grad;
+		x++;
+	}
 	
 }
 
-#include <stdio.h>
-
-void	main(void)
+t_line	line(int x0, int x1, int y0, int y1, int color)
 {
-	printf(" brightness test:\n");
-	printf(" original color: %X\n", LIME);
-	for( int i = 0; i / 10 < 1; i++)
-	{
-		printf(" new: %X\n", brightness(LIME, (float)(i / 10)));
-	}
+	t_line l;
+	l.x0 = x0;
+	l.x1 = x1;
+	l.y0 = y0;
+	l.y1 = y1;
+	l.color = color;
+	return (l);
+}
+
+int		main()
+{
+	float	var;
+	t_mlx	win;
+	int		x, color;
+	t_line	l;
+
+	x = 10;
+	win = window(1000, 1000);
+	color = WHITE;
+	l = line(1000, 200, 10, 1500, color);
+	draw_wu_line(win, l);
+	mlx_loop(win.mp);
+	return (0);
 }

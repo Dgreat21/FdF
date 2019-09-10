@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:50:50 by dgreat            #+#    #+#             */
-/*   Updated: 2019/09/05 23:44:01 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/09/10 02:56:38 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define FUCHSIA 0xff00ff
 # define GRAY 0x808080
 # define GREEN 0x008000
-# define LINE 0x00ff00
+# define LIME 0x00ff00
 # define MAROON 0x800000
 # define NAVY 0x000080
 # define OLIVE 0x808000
@@ -34,9 +34,9 @@
 # define WHITE 0xffffff
 # define YELLOW 0xffff00
 
-# define R 0x100000
-# define G 0x001000
-# define B 0x000010
+# define R 0xFF0000
+# define G 0x00FF00
+# define B 0x0000FF
 
 typedef struct		s_glist
 {
@@ -59,9 +59,12 @@ typedef struct		s_line
 	int				x1;
 	int				y0;
 	int				y1;
-	int				r;
-	int				g;
-	int				b;
+//	int				r;
+//	int				g;
+//	int				b;
+	int				color;
 }					t_line;
+
+t_mlx				window(int w, int l);
 
 #endif
