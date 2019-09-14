@@ -4,7 +4,6 @@ CFLAGS = -Wall -Wextra -Werror -c
 
 SRC_FC =	*.c
 
-
 SRC_FO =	*.o
 
 NAME = libft.a
@@ -25,3 +24,6 @@ re: fclean all
 
 check: re
 	@/bin/rm -f $(SRC_FO)
+
+norm:
+	@norminette *.c

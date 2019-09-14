@@ -32,27 +32,3 @@ void		ft_putnbr_fd(int nb, int fd)
 		n %= f;
 	}
 }
-
-void		ft_putnbr_base(unsigned int nb, size_t base, short flag)//flag 1 - cap
-{
-	int		len;
-	int		f;
-	long	n;
-	int		res;
-
-	n = (long)nb;
-	//f = (n >= 0) ? (0) : (1);
-	//n = (n >= 0) ? n : -n;
-	len = ft_log(n, base);
-	//if (f == 1)
-	//	ft_putchar_fd('-', fd);
-	while (len)
-	{
-		f = ft_pow_uint(base, len - 1);
-		res = n/f;
-		if (base > 10 && res >= 10)
-			ft_putchar((flag) ? (res + 55) : (res + 87));
-		len--;
-		n %= f;
-	}
-}

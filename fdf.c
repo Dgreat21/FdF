@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:03:49 by dgreat            #+#    #+#             */
-/*   Updated: 2019/09/10 03:14:08 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/09/10 03:54:15 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void		draw_wu_line(t_mlx win, t_line l)
 		y += grad;
 		x++;
 	}
-	
 }
 
 t_line	line(int x0, int x1, int y0, int y1, int color)
@@ -99,3 +98,5 @@ int		main()
 	mlx_loop(win.mp);
 	return (0);
 }
+
+

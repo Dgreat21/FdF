@@ -49,6 +49,8 @@ t_list				*ft_lstadd_end(t_list *head, t_list *elem);
 
 void				vardump(char *str, int a);
 
+void				ft_putnbr_base(unsigned int nb, size_t base, short flag);
+
 /*
 ** First
 */

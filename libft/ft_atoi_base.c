@@ -6,7 +6,7 @@
 /*   By: dgreat <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 23:14:55 by dgreat            #+#    #+#             */
-/*   Updated: 2019/04/17 06:17:43 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/09/14 02:10:20 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int				ft_atoi_base(const char *s, int base)
 	else if (s[i] == '-')
 		f--;
 	((s[i] == '+') || (s[i] == '-')) ? (i++) : (0);
-	while (sys(s[i], base))
+	while (sys(s[i], base) && s[i])
 	{
 		pnb = nb;
 		nb = nb * base + num(s[i]);

@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/02 19:35:58 by dgreat            #+#    #+#             */
-/*   Updated: 2019/09/10 02:11:12 by dgreat           ###   ########.fr       */
+/*   Created: 2019/09/14 06:17:25 by dgreat            #+#    #+#             */
+/*   Updated: 2019/09/14 06:18:24 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int		key(int key)
+void		ft_putnbr_base(unsigned int nb, size_t base, short flag)
 {
-	if (key == 53)
-		exit(0);
-	return (0);
-}
+	int		len;
+	int		f;
+	long	n;
+	int		res;
 
-t_mlx		window(int w, int l)
-{
-	t_mlx	win;
-	t_glist	data;
-	int		x, y, fd;
-
-	win.mp = mlx_init();
-	win.wp = mlx_new_window(win.mp, w, l, "fdf");
-	mlx_key_hook(win.wp, key, (void *)0);
-	return (win);
+	n = (long)nb;
+	len = ft_log(n, base);
+	while (len)
+	{
+		f = ft_pow_uint(base, len - 1);
+		res = n / f;
+		if (base > 10 && res >= 10)
+			ft_putchar((flag) ? (res + 55) : (res + 87));
+		len--;
+		n %= f;
+	}
 }

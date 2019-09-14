@@ -6,7 +6,7 @@ SRC_FC =        *.c
 
 SRC_FO =        *.o
 
-NAME = fdf1
+NAME = fdf
 
 all: $(NAME)
 
