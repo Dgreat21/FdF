@@ -51,6 +51,8 @@ void				vardump(char *str, int a);
 
 void				ft_putnbr_base(unsigned int nb, size_t base, short flag);
 
+void				error_notice(char *s);
+
 /*
 ** First
 */

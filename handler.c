@@ -6,25 +6,34 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:53:14 by dgreat            #+#    #+#             */
-/*   Updated: 2019/09/14 06:55:45 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/09/16 00:05:18 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdlib.h>
 
 void	allocator(t_map map)
 {
-	int i;
+	int i, cl;
 
 	i = 0;
-	g_map = (t_glist **)malloc((map.i) * sizeof(t_glist *));
+	cl = 0;
+	if ((g_map = (t_glist **)malloc((map.i) * sizeof(t_glist *))) == NULL)
+		error_notice("Malloc error");
 	while (i < map.i)
 	{
-		g_map[i] = (t_glist *)malloc((map.j) * sizeof(t_glist));
+		if ((g_map[i] = (t_glist *)malloc((map.j) * sizeof(t_glist))) == NULL)
+		{
+			while (cl < i) {
+				free(g_map[cl]);
+				cl++;
+			}
+			free(g_map);
+			error_notice("Lines malloc error");
+		}
+		i++;
 	}
-//	if (!())
-//TODO:add error
-//return (NULL);
 }
 
 t_map	counter(int fd)
@@ -38,41 +47,58 @@ t_map	counter(int fd)
 	{
 		if (!i)
 			j = ft_word_counter(line, ' ');
+		else if (j != ft_word_counter(line, ' '))
+			error_notice("wrong coordinates number");
 		i++;
 	}
 	if (!i)
-	{
-		ft_putendl("Something went wrong");
-		exit(0);
-	}
+		error_notice("no lines in the file");
 	map.i = i;
 	map.j = j;
 	map.x = 0;
 	map.y = 0;
-	(i % 2) ? map.y++;
-	(j % 2) ? map.x++;
+	(i % 2) ? map.y++ : (0);
+	(j % 2) ? map.x++ : (0);
 	allocator(map);
-	return (map);
+	return (map);//TODO: replace gnl modulo
 }
 
-void	reader(int fd)
+void	reader(int fd, t_map map)
 {
 	char		**line, **stock;
 	int			i, j;
 	char		buf[BUFF_SIZE];
-	t_map		map;
+//	t_map		map;
+//
+//	map = counter(fd);
 
-	map = counter(fd);
 	read(fd, buf, BUFF_SIZE);
 	stock = ft_strsplit(buf, '\n');
 	i = 0;
-	while (stock[i]) {
+	vardump("i", i);
+	ft_putendl(stock[0]);
+	ft_putendl(stock[1]);
+	ft_putendl(stock[2]);
+	ft_putendl(stock[3]);
+	ft_putendl(stock[4]);
+	ft_putendl(stock[5]);
+	ft_putendl(stock[6]);
+	ft_putendl(stock[7]);
+	ft_putendl(stock[8]);
+	ft_putendl(stock[9]);
+	ft_putendl(stock[10]);
+	ft_putendl(stock[11]);
+	ft_putendl(stock[1]);
+	while (stock[i] != NULL)
+	{
 		line = ft_strsplit(stock[i], ' ');
 		j = 0;
-		while (line[j])
+		while (line[j] != NULL)
 		{
-			if (map.i >)
-			g_map[i][j] = ft_atoi(line); //TODO: add coordinates move h/2 and l/2
+
+			g_map[i][j].x = j;
+			g_map[i][j].y = i;
+			g_map[i][j].z = ft_atoi(line[j]); //TODO: add coordinates move h/2 and l/2
 			j++;
 		}
 		i++;
@@ -83,20 +109,18 @@ void	reader(int fd)
 int		main(int argc, char **argv)
 {
 	int			fd;
-	char		*line;
-	int			i;
-	t_glist		*list;
-	t_glist		*begin;
+	t_map		map;
 
 	if (argc == 1)
-		fd = 0;
+		error_notice("no file");
 	else if (argc == 2)
 		fd = open(argv[1], O_RDONLY);
 	else
 		return (2);
-	&begin = &line;
-	reader(fd, &list);
-	free(line);
+	map = counter(fd);
+	close(fd);
+	fd = open(argv[1], O_RDONLY);
+	reader(fd, map);
 	if (argc == 2)
 		close(fd);
 }
