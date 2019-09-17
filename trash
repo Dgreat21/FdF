@@ -1,0 +1,49 @@
+//t_map	counter(int fd)
+//{
+//	int		i, j;
+//	char	*line;
+//	t_map	map;
+//
+//	i = 0;
+//	while (get_next_line(fd, &line) == 1)
+//	{
+//		if (!i)
+//			j = ft_word_counter(line, ' ');
+//		else if (j != ft_word_counter(line, ' '))
+//			error_notice("wrong coordinates number");
+//		i++;
+//	}
+//	if (!i)
+//		error_notice("no lines in the file");
+//	map.i = i;
+//	map.j = j;
+//	map.x = 0;
+//	map.y = 0;
+//	(i % 2) ? map.y++ : (0);
+//	(j % 2) ? map.x++ : (0);
+//	allocator(map);
+//	return (map);
+//}
+
+
+//t_map	counter(int fd)
+//{
+//	int		i, j;
+//	char	*line;
+//	t_map	map;
+//
+//	i = 0;
+//	while (get_next_line(fd, &line) == 1)
+//	{
+//		if (!i)
+//			j = ft_word_counter(line, ' ');
+//		else if (j != ft_word_counter(line, ' '))
+//			error_notice("wrong coordinates number");
+//		i++;
+//	}
+//	if (!i)
+//		error_notice("no lines in the file");
+//
+//	allocator(map);
+//	return (map);
+//}

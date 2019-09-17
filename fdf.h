@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:50:50 by dgreat            #+#    #+#             */
-/*   Updated: 2019/09/14 06:46:04 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/09/17 23:09:04 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,10 @@
 
 typedef struct		s_glist
 {
-	int				x;
-	int				y;
-	int				z;
+	float			x;
+	float			y;
+	float			z;
 	int				color;
-	struct s_glist	*next;
 }					t_glist;
 
 typedef struct		s_mlx
@@ -78,4 +77,6 @@ t_mlx				window(int w, int l);
 void				draw_wu_line(t_mlx win, t_line l);
 
 t_glist				**g_map;
+int					g_lines, g_cols;
+t_map				g_data;
 #endif

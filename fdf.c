@@ -13,13 +13,6 @@
 #include "fdf.h"
 #include <stdio.h>
 
-void		ft_swap(int *a, int *b)
-{
-	*a += *b;
-	*b = *a - *b;
-	*a -= *b;
-}
-
 int		 brightness(int color, float k)
 {
 	int	r, g, b, tail, res;

@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   var_dump.c                                         :+:      :+:    :+:   */
+/*   free_str.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/02 17:31:59 by dgreat            #+#    #+#             */
-/*   Updated: 2019/09/02 17:32:52 by dgreat           ###   ########.fr       */
+/*   Created: 2019/09/17 19:57:16 by dgreat            #+#    #+#             */
+/*   Updated: 2019/09/17 20:23:42 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	vardump(char *str, int a)
+void	free_str(char **stock, int lines)
 {
-	ft_putstr(str);
-	ft_putstr(":");
-	ft_putnbr(a);
-	endl();
+	int i;
+
+	i = 0;
+	while (i < lines)
+	{
+		free(stock[i]);
+		i++;
+	}
+	free(stock);
 }

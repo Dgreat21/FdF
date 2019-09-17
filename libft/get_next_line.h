@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # include <fcntl.h>
-# define BUFF_SIZE 10000
+# define BUFF_SIZE 1000000
 
 typedef struct		s_mlist
 {

@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:42:41 by dgreat            #+#    #+#             */
-/*   Updated: 2019/09/10 01:45:21 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/09/17 19:59:54 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <stdio.h>
 # include "get_next_line.h"
 # include "../minilibx/mlx.h"
 
@@ -52,6 +53,22 @@ void				vardump(char *str, int a);
 void				ft_putnbr_base(unsigned int nb, size_t base, short flag);
 
 void				error_notice(char *s);
+
+void				endl();
+
+void				free_str(char **stock, int lines);
+
+/*
+** SAFE
+*/
+
+char				*ft_strdup_safe(const char *s1);
+
+char				*ft_strchr_safe(const char *s, int c);
+
+char				*ft_strcpy_safe(char *dst, const char *src);
+
+void				*ft_realloc(void *ptr, size_t size);
 
 /*
 ** First
@@ -182,17 +199,5 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 int					get_next_line(const int fd, char **line);
-
-/*
-** SAFE
-*/
-
-char				*ft_strdup_safe(const char *s1);
-
-char				*ft_strchr_safe(const char *s, int c);
-
-char				*ft_strcpy_safe(char *dst, const char *src);
-
-void				*ft_realloc(void *ptr, size_t size);
 
 #endif
