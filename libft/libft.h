@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:42:41 by dgreat            #+#    #+#             */
-/*   Updated: 2019/09/17 19:59:54 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/09/25 06:28:04 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,18 @@ void				error_notice(char *s);
 void				endl();
 
 void				free_str(char **stock, int lines);
+
+void				ft_swap(int *a, int *b);
+
+void				ft_fswap(float *a, float *b);
+
+int					ft_min(int a, int b);
+
+int					ft_max(int a, int b);
+
+float				ft_fmin(float a, float b);
+
+float				ft_fmax(float a, float b);
 
 /*
 ** SAFE

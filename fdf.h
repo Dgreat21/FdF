@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:50:50 by dgreat            #+#    #+#             */
-/*   Updated: 2019/09/17 23:09:04 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/09/25 08:53:17 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,33 +50,37 @@ typedef struct		s_mlx
 {
 	void			*mp;
 	void			*wp;
+	int				w;
+	int				l;
+	short			f;
 }					t_mlx;
 
 typedef struct		s_map
 {
-	int				i;
-	int				j;
-	int				x;
-	int				y;
+	int
 }					t_map;
 
 typedef struct		s_line
 {
-	int				x0;
-	int				x1;
-	int				y0;
-	int				y1;
-//	int				r;
-//	int				g;
-//	int				b;
+	float			x0;
+	float			x1;
+	float			y0;
+	float			y1;
+	float			dy;
+	float			dx;
+	float			*i;
+	float			*f;
+	float			k;
 	int				color;
 }					t_line;
 
 t_mlx				window(int w, int l);
 
+void				draw_vert(t_mlx win, t_line l);
+
 void				draw_wu_line(t_mlx win, t_line l);
 
-t_glist				**g_map;
-int					g_lines, g_cols;
-t_map				g_data;
+t_line				line(int x0, int x1, int y0, int y1, int color);
+
+//t_map				g_data;
 #endif

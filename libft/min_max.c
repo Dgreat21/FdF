@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   min_max.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/02 19:18:34 by dgreat            #+#    #+#             */
-/*   Updated: 2019/09/25 01:54:03 by dgreat           ###   ########.fr       */
+/*   Created: 2019/09/25 06:22:15 by dgreat            #+#    #+#             */
+/*   Updated: 2019/09/25 06:25:12 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# include <fcntl.h>
-# define BUFF_SIZE 1000000
-
-typedef struct		s_mlist
+int		ft_min(int a, int b)
 {
-	void			*data;
-	size_t			size;
-	int				x;
-}					t_mlist;
+	return ((a > b) ? (b) : (a));
+}
 
-enum				e_strings{glue, duplicate, linebreak};
+int		ft_max(int a, int b)
+{
+	return ((a < b) ? (b) : (a));
+}
 
-int					get_next_line(const int fd, char **line);
+float	ft_fmin(float a, float b)
+{
+	return ((a > b) ? (b) : (a));
+}
 
-#endif
+float	ft_fmax(float a, float b)
+{
+	return ((a < b) ? (b) : (a));
+}

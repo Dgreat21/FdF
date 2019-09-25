@@ -13,6 +13,12 @@ all: $(NAME)
 $(NAME):
 		cc -o $(NAME) -I /usr/local/include fdf.c libft/libft.a main.c -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
 
+hand:
+		gcc -o hand handler.c libft/libft.a
+
+test:
+		./hand example/maps/42.fdf
+
 clean:
 		@/bin/rm -f $(SRC_FO)
 

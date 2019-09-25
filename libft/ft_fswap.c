@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_fswap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/02 19:18:34 by dgreat            #+#    #+#             */
-/*   Updated: 2019/09/25 01:54:03 by dgreat           ###   ########.fr       */
+/*   Created: 2019/09/25 03:05:53 by dgreat            #+#    #+#             */
+/*   Updated: 2019/09/25 06:28:43 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# include <fcntl.h>
-# define BUFF_SIZE 1000000
-
-typedef struct		s_mlist
+void		ft_fswap(float *a, float *b)
 {
-	void			*data;
-	size_t			size;
-	int				x;
-}					t_mlist;
-
-enum				e_strings{glue, duplicate, linebreak};
-
-int					get_next_line(const int fd, char **line);
-
-#endif
+	*a += *b;
+	*b = *a - *b;
+	*a -= *b;
+}

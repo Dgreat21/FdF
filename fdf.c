@@ -6,14 +6,77 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:03:49 by dgreat            #+#    #+#             */
-/*   Updated: 2019/09/10 03:54:15 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/09/25 09:06:48 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
-int		 brightness(int color, float k)
+
+//void	draw_vert(t_mlx win, t_line l)
+//{
+//	int y;
+//
+//	y = l.y0 - 1;
+//	while (++y < l.y1)
+//		mlx_pixel_put(win.mp, win.wp, l.x0, y, l.color);
+//void	draw(t_line l)
+//{
+//	grad = dy / dx;//k
+//	y = l.y0 + grad;
+//	x = l.x0;
+//	while (++x <= l.x1 - 1)
+//	{
+//		mlx_pixel_put(win.mp, win.wp, x, (int) y, brightness(l.color, 1 - fract(y)));
+//		mlx_pixel_put(win.mp, win.wp, x, (int) y + 1, brightness(l.color, fract(y)));
+//		y += grad;
+//	}
+//}
+//
+
+void	draw(t_mlx win, float f0, float f1, float i0, float i1)
+{
+	float	df;
+	float	di;
+	float	k;
+	float	f;
+	int		i;
+
+	df = f1 - f0;
+	di = i1 - i0;
+	k = df / di;
+	f = f0 + k;
+	i = (int)i0;
+	while (++i <= i1 - 1)
+	{
+		mlx_pixel_put(win.mp, win.wp, i, (int) f, brightness(color, 1 - fract(f)));
+		mlx_pixel_put(win.mp, win.wp, i, (int) f + 1, brightness(l.color, fract(f)));
+		f += grad;
+	}
+}
+
+t_line	line(int x0, int x1, int y0, int y1, int color)
+{
+	t_line l;
+
+	l.color = color;
+	l.x0 = (float)x0;
+	l.x1 = (float)x1;
+	l.y0 = (float)y0;
+	l.y1 = (float)y1;
+	l.dx = l.x1 - l.x0;
+	l.dy = l.y1 - l.y0;
+	if (y1 - y0 > x1 - x0)
+	{
+		l.k = dx / dy;
+		l.i = &l.y0;
+	}
+	else
+		l.k = l.dy / l.dx;
+	return (l);
+}
+
+int		brightness(int color, float k)
 {
 	int	r, g, b, tail, res;
 
@@ -33,50 +96,81 @@ int		 brightness(int color, float k)
 	return (res);
 }
 
-void		draw_wu_line(t_mlx win, t_line l)
+float	fract(float y)
+{
+	return (y - (int)y);
+}
+
+void	draw_wu_line(t_mlx win, t_line l)//todo NORM
 {
 	short	f;
-	float	dx, dy, y, grad;
-	int		x;
+	float	dx;
+	float	dy;
+	float	x;
+	float	y;
+	float	grad;
 
-	f = 0;
-	(abs(l.x1-l.x0) < (abs(l.y1-l.y0))) ? f++ : (0);
-	if (f)
-	{
-		ft_swap(&l.x0, &l.y0);
-		ft_swap(&l.x1, &l.y1);
-	}
 	if (l.x0 > l.x1)
 	{
-		ft_swap(&l.x0, &l.x1);
-		ft_swap(&l.y0, &l.y1);
+		ft_fswap(&l.x0, &l.x1);
+		ft_fswap(&l.y0, &l.y1);
 	}
-	dx = l.x1 - l.x0;
-	dy = l.y1 - l.y0;
-	grad = dy / dx;
-	y = l.y0 + grad;
-	x = l.x0 + 1;
-	while (x <= l.x1 - 1)
+	if (l.dx >= l.dy)
 	{
-		mlx_pixel_put(win.mp, win.wp, x, (int)y, brightness(l.color, 1 - (y - (int)y)));
-		mlx_pixel_put(win.mp, win.wp, x, (int)y +1, brightness(l.color, y - (int)y));
-		y += grad;
-		x++;
+		grad = dy / dx;
+		y = l.y0 + grad;
+		x = l.x0;
+		while (++x <= l.x1 - 1)
+		{
+			mlx_pixel_put(win.mp, win.wp, x, (int)y, brightness(l.color, 1 - fract(y)));
+			mlx_pixel_put(win.mp, win.wp, x, (int)y + 1, brightness(l.color, fract(y)));
+			y += grad;
+		}
+	}
+	else
+	{
+		grad = dx / dy;
+		x = l.x0 + grad;
+		y = l.y0;
+		while (++y <= l.y1 - 1)
+		{
+			mlx_pixel_put(win.mp, win.wp, (int)x,  y, brightness(l.color, 1 - fract(x)));
+			mlx_pixel_put(win.mp, win.wp, (int)x + 1, y, brightness(l.color, fract(x)));
+			x += grad;
+		}
 	}
 }
 
-t_line	line(int x0, int x1, int y0, int y1, int color)
+
+//void	check_line_data(t_line *line)
+//{
+//	t_line	l;
+//	int		f;
+//
+//
+//	l = line;
+//	if (l.x0 > l.x1)
+//	{
+//		ft_swap(&l.x0, &l.x1);
+//		ft_swap(&l.y0, &l.y1);
+//	}
+//}
+
+
+void	draw_my_line(t_mlx win, t_line l)
 {
-	t_line l;
-	l.x0 = x0;
-	l.x1 = x1;
-	l.y0 = y0;
-	l.y1 = y1;
-	l.color = color;
-	return (l);
+	float	y;
+	float	k;
+	int		x;
+
+
+	check_line_data(&l);
+	if (l.x0 == l.x1)
+		draw_vert(win, l);
+	else
 }
 
-int		main()
+int		main(void)
 {
 	float	var;
 	t_mlx	win;
@@ -87,7 +181,8 @@ int		main()
 	win = window(1000, 1000);
 	color = WHITE;
 	l = line(1000, 200, 10, 1500, color);
-	draw_wu_line(win, l);
+	draw_vert(win, l);
+	//draw_wu_line(win, l);
 	mlx_loop(win.mp);
 	return (0);
 }
