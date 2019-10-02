@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:03:49 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/02 08:45:13 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/02 09:03:21 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,56 +15,7 @@
 
 /*TODO : move struct work functions to new file*/
 
-t_glist	set_dot(float x, float y)
-{
-	t_glist	dot;
-
-	dot.x = x;
-	dot.y = y;
-	return (dot);
-}
-
-void	vardot(char *s, t_glist a)
-{
-	endl();
-	ft_putstr(s);
-	ft_putchar('(');
-	ft_putnbr(a.x);
-	ft_putchar(';');
-	ft_putnbr(a.y);
-	ft_putchar(')');
-	endl();
-}
-
-void	swap_glist(t_glist *a, t_glist *b)
-{
-	ft_fswap(&(a->x), &(b->x));
-	ft_fswap(&(a->y), &(b->y));
-}
-
-t_line	line(t_glist a, t_glist b, int color)
-{
-	t_line	l;
-
-	l.color = color;
-	l.dir = 1;
-	l.d0 = a;
-	l.d1 = b;
-	if (fabsf(l.d1.y - l.d0.y) > fabsf(l.d1.x - l.d0.x))
-	{
-		(a.y > b.y) ? (swap_glist(&l.d0, &l.d1)) : (0);
-		l.k = (l.d1.x - l.d0.x) / (l.d1.y - l.d0.y);
-		l.dir--;
-	}
-	else
-	{
-		l.k = (l.d1.y - l.d0.y) / (l.d1.x - l.d0.x);
-		(a.x > b.x) ? (swap_glist(&l.d0, &l.d1)) : (0);
-	}
-	return (l);
-}
-
-int		brightness(int color, float k)
+int		brightness0(int color, float k)
 {
 	int	r;
 	int	g;
@@ -85,19 +36,56 @@ int		brightness(int color, float k)
 	return (res);
 }
 
+int		brightness(t_color hue, float k)
+{
+	hue.rgb.r = round((float)hue.rgb.r * k);
+	hue.rgb.g = round((float)hue.rgb.g * k);
+	hue.rgb.b = round((float)hue.rgb.b * k);
+
+	return (hue.mlx);
+}
+
 void	pixel(t_mlx win, t_glist dot, int color)
 {
 	mlx_pixel_put(win.mp, win.wp, (int)dot.x, (int)dot.y, color);
 }
+
+//void	drawer0(t_mlx win, t_line l)
+//{
+//	float	x;
+//	float	y;
+//	int		end;
+//	int		hue;
+//
+//	hue = l.color;
+//	x = (l.dir) ? (l.d0.x) : (l.d0.y);
+//	y = (l.dir) ? (l.d0.y) : (l.d0.x);
+//	end = (l.dir) ? (l.d1.x) : (l.d1.y);
+//	--x;
+//	if (l.dir)
+//		while (++x <= end)
+//		{
+//			pixel(win, set_dot(x, y), brightness(hue, 1 - fract(y)));
+//			pixel(win, set_dot(x, y + 1), brightness(hue, fract(y)));
+//			y += l.k;
+//		}
+//	else
+//		while (++x <= end)// часть которая работает по y
+//		{
+//			pixel(win, set_dot(y, x), brightness(hue, 1 - fract(x)));
+//			pixel(win, set_dot(y + 1, x), brightness(hue, fract(x)));
+//			y += l.k;
+//		}
+//}
 
 void	drawer(t_mlx win, t_line l)
 {
 	float	x;
 	float	y;
 	int		end;
-	int		hue;
+	t_color	hue;
 
-	hue = l.color;
+	hue.mlx = l.color;
 	x = (l.dir) ? (l.d0.x) : (l.d0.y);
 	y = (l.dir) ? (l.d0.y) : (l.d0.x);
 	end = (l.dir) ? (l.d1.x) : (l.d1.y);
@@ -110,7 +98,7 @@ void	drawer(t_mlx win, t_line l)
 			y += l.k;
 		}
 	else
-		while (++x <= end)// часть которая работает по y
+		while (++x <= end)
 		{
 			pixel(win, set_dot(y, x), brightness(hue, 1 - fract(x)));
 			pixel(win, set_dot(y + 1, x), brightness(hue, fract(x)));
@@ -180,11 +168,11 @@ void show_d(t_mlx win, t_glist o)
 	drawer(win, d3);
 }
 
-int		main(int ac, char **av)
+int		main(void)
 {
 	t_mlx	win;
-	int		color;
-	t_line	l;
+//	int		color;
+//	t_line	l;
 	t_glist	o;
 
 	o = set_dot(500, 500);

@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:50:50 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/01 21:31:02 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/02 08:51:37 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,6 @@ typedef struct		s_map//TODO исправить это гавно, остатки
 
 typedef struct		s_line
 {
-//	float			x0;
-//	float			x1;
-//	float			y0;
-//	float			y1;
-//	float			dy;
-//	float			dx;
-//	float			*i;
-//	float			*f;
-//	float			k;
 	struct s_glist	d0;
 	struct s_glist	d1;
 	short			dir;
@@ -102,6 +93,12 @@ void				drawer(t_mlx win, t_line l);
 t_line				line(t_glist a, t_glist b, int color);
 
 void				show_xyz(t_mlx win);
+
+void				swap_glist(t_glist *a, t_glist *b);
+
+void				vardot(char *s, t_glist a);
+
+t_glist				set_dot(float x, float y);
 
 //t_map				g_data;
 #endif
