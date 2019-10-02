@@ -6,27 +6,21 @@
 /*   By: dgreat <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 23:14:55 by dgreat            #+#    #+#             */
-/*   Updated: 2019/09/14 02:10:20 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/01 21:59:50 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-static char		num(char c)
+static char 	num(char c)
 {
-	int		n;
-	char	*sys;
-
-	n = 0;
-	sys = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\0";
-	while (sys[n])
-	{
-		if (sys[n] == c)
-			return (n);
-		n++;
-	}
-	return (0);
+	if (47 < c && c < 58)
+		return (c - 48);
+	if (64 < c && c < 91)
+		return (c - 55);
+	if (96 < c && c < 123)
+		return (c - 87);
+	return (100);
 }
 
 static int		sys(char c, int base)
@@ -52,8 +46,8 @@ int				ft_atoi_base(const char *s, int base)
 		i++;
 	if ((s[i] > 47 && s[i] < 58) || (s[i] > 64 && s[i] < 91) || (s[i] == '+'))
 		f++;
-	else if (s[i] == '-')
-		f--;
+	(s[i] > 96 && s[i] < 123) ? (f++) : (0);
+	(s[i] == '-') ? (f--) : (0);
 	((s[i] == '+') || (s[i] == '-')) ? (i++) : (0);
 	while (sys(s[i], base) && s[i])
 	{

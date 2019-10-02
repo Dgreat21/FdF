@@ -1,3 +1,45 @@
+//	if (l.dir)
+//	{
+//		x = l.d0.x;
+//		y = l.d0.y;
+//		end = l.d1.x;
+//	}
+//	else
+//	{
+//		x = l.d0.y;
+//		y = l.d0.x;
+//		end = l.d1.y;
+//	}
+
+void	drawer_0(t_mlx win, t_line l)
+{
+	float	i;
+	float	f;
+	int		end;
+	int		hue;
+
+	hue = l.color;
+	(l.dir) ? (i = l.d0.x) : (i = l.d0.y);
+	(l.dir) ? (f = l.d0.y) : (f = l.d0.x);
+	(l.dir) ? (end = (int)l.d1.x) : (end = (int)l.d1.y);
+	--i;
+	if (l.dir)
+		while (++i <= end)
+		{
+			mlx_pixel_put(win.mp, win.wp, (int)i, (int)f, brightness(hue, 1 - fract(f)));
+			mlx_pixel_put(win.mp, win.wp, (int)i, (int)f + 1, brightness(hue, fract(f)));
+			f += l.k;
+		}
+	else
+		while (++f <= end)
+		{
+			mlx_pixel_put(win.mp, win.wp, (int)i, (int)f, brightness(hue, 1 - fract(i)));
+			mlx_pixel_put(win.mp, win.wp, (int)i + 1, (int)f, brightness(hue, fract(i)));
+			i += l.k;
+		}
+}
+
+
 //t_map	counter(int fd)
 //{
 //	int		i, j;
@@ -46,4 +88,112 @@
 //
 //	allocator(map);
 //	return (map);
+//}
+
+
+//void	draw_vert(t_mlx win, t_line l)
+//{
+//	int y;
+//
+//	y = l.y0 - 1;
+//	while (++y < l.y1)
+//		mlx_pixel_put(win.mp, win.wp, l.x0, y, l.color);
+//void	draw(t_line l)
+//{
+//	grad = dy / dx;//k
+//	y = l.y0 + grad;
+//	x = l.x0;
+//	while (++x <= l.x1 - 1)
+//	{
+//		mlx_pixel_put(win.mp, win.wp, x, (int) y, brightness(l.color, 1 - fract(y)));
+//		mlx_pixel_put(win.mp, win.wp, x, (int) y + 1, brightness(l.color, fract(y)));
+//		y += grad;
+//	}
+//}
+//
+
+//void	draw_wu_line(t_mlx win, t_line l)//todo NORM
+//{
+//	float	dx;
+//	float	dy;
+//	float	x;
+//	float	y;
+//	float	grad;
+//
+//
+//	if (l.dx >= l.dy)
+//	{
+////		grad = dy / dx;
+////		y = l.y0 + grad;
+////		x = l.x0;
+////		while (++x <= l.x1 - 1)
+////		{
+////			mlx_pixel_put(win.mp, win.wp, x, (int)y, brightness(l.color, 1 - fract(y)));
+////			mlx_pixel_put(win.mp, win.wp, x, (int)y + 1, brightness(l.color, fract(y)));
+////			y += grad;
+////		}
+//		draw(win, l.y0, l.y1, l.x0, l.x1);
+//	}
+//	else
+//	{
+////		grad = dx / dy;
+////		x = l.x0 + grad;
+////		y = l.y0;
+////		while (++y <= l.y1 - 1)
+////		{
+////			mlx_pixel_put(win.mp, win.wp, (int)x,  y, brightness(l.color, 1 - fract(x)));
+////			mlx_pixel_put(win.mp, win.wp, (int)x + 1, y, brightness(l.color, fract(x)));
+////			x += grad;
+////		}
+//		draw(win, l.x0, l.x1, l.y0, l.y1);
+//	}
+//}
+
+
+//void	check_line_data(t_line *line)
+//{
+//	t_line	l;
+//	int		f;
+//
+//
+//	l = line;
+//	if (l.x0 > l.x1)
+//	{
+//		ft_swap(&l.x0, &l.x1);
+//		ft_swap(&l.y0, &l.y1);
+//	}
+//}
+
+
+//void	draw_my_line(t_mlx win, t_line l)
+//{
+//	float	y;
+//	float	k;
+//	int		x;
+//
+//
+//	check_line_data(&l);
+//	if (l.x0 == l.x1)
+//		draw_vert(win, l);
+//	else
+//}
+//void	draw(t_mlx win, float f0, float f1, float i0, float i1)
+//{
+//	float	df;
+//	float	di;
+//	float	k;
+//	float	f;
+//	int		i;
+//
+//	df = f1 - f0;
+//	di = i1 - i0;
+//	k = df / di;
+//	f = f0 + k;
+//	i = (int)i0;
+//	while (++i <= i1 - 1)
+//	{
+//		mlx_pixel_put(win.mp, win.wp, i, (int) f, brightness(color, 1 - fract(f)));
+//		mlx_pixel_put(win.mp, win.wp, i, (int) f + 1, brightness(l.color, fract(f)));
+//		f += grad;
+//	}
 //}

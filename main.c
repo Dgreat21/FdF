@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 19:35:58 by dgreat            #+#    #+#             */
-/*   Updated: 2019/09/25 03:13:17 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/01 20:40:20 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,24 @@
 
 void	show_xyz(t_mlx win)
 {
-	int		x0;
-	int		y0;
-	t_line	x;
-	t_line	y;
-	t_line	z;
-
-	x0 = win.l / 2;
-	y0 = win.w / 2;
-	x = line(x0, win.l, y0, y0, WHITE);
-	y = line(y0, win.w, x0, x0, BLUE);
-	z = line(x0, y0, 0, x0 - y0, GREEN);
-	draw_wu_line(win, x);
-	//draw_wu_line(win, y);
-	draw_vert(win, y);
-	draw_wu_line(win, z);
+//	int		x0;
+//	int		y0;
+//	t_line	x;
+//	t_line	y;
+//	t_line	z;
+//
+//	x0 = win.l / 2;
+//	y0 = win.w / 2;
+//	x = line(x0, win.l, y0, y0, WHITE);
+//	y = line(x0, x0, y0, 0, BLUE);
+//	vardump("x0", y.d0.x);
+//	vardump("x1", y.d1.x);
+//	vardump("y0", y.d0.y);
+//	vardump("y1", y.d1.y);
+//	z = line(x0, 0, y0, x0 - y0, GREEN);
+////	drawer(win, x);
+//	drawer(win, y);
+//	drawer(win, z);
 }
 
 int		key(int key)
@@ -50,9 +53,7 @@ int		key(int key)
 
 t_mlx	window(int w, int l)
 {
-	t_glist	data;
-	int		x;
-	int		y;
+	t_mlx	win;
 	int		fd;
 
 	win.f = 0;

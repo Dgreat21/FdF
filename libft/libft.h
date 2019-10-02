@@ -70,6 +70,8 @@ float				ft_fmin(float a, float b);
 
 float				ft_fmax(float a, float b);
 
+float				fract(float y);
+
 /*
 ** SAFE
 */

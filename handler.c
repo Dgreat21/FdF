@@ -13,7 +13,7 @@
 #include "fdf.h"
 #include <stdlib.h>
 
-void		free_map(int lines, t_glist map)
+void		free_map(int lines, t_glist **map)
 {
 	int i;
 
@@ -26,7 +26,7 @@ void		free_map(int lines, t_glist map)
 	free(map);
 }
 
-t_map		mapper(int lines, int cols)
+t_map		mapper(int lines, int cols)//TODO :
 {
 	t_map	data;
 

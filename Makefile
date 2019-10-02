@@ -30,3 +30,7 @@ re: fclean all
 check: re
 		@/bin/rm -f $(SRC_FO)
 
+fuck:
+		cc -Wall -Wextra -Werror -o $(NAME) -I /usr/local/include fdf.c libft/libft.a main.c -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
+
+

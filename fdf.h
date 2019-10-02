@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:50:50 by dgreat            #+#    #+#             */
-/*   Updated: 2019/09/25 08:53:17 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/01 21:31:02 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,20 @@ typedef struct		s_glist
 	int				color;
 }					t_glist;
 
+typedef struct		s_argb
+{
+	unsigned char	b;
+	unsigned char	g;
+	unsigned char	r;
+	unsigned char	a;
+}					t_argb;
+
+typedef union		u_color
+{
+	int				mlx;
+	t_argb			rgb;
+}					t_color;
+
 typedef struct		s_mlx
 {
 	void			*mp;
@@ -55,32 +69,39 @@ typedef struct		s_mlx
 	short			f;
 }					t_mlx;
 
-typedef struct		s_map
+typedef struct		s_map//TODO исправить это гавно, остатки ГК
 {
-	int
+	int				i;
+	int				j;
+	int				x;
+	int				y;
 }					t_map;
 
 typedef struct		s_line
 {
-	float			x0;
-	float			x1;
-	float			y0;
-	float			y1;
-	float			dy;
-	float			dx;
-	float			*i;
-	float			*f;
+//	float			x0;
+//	float			x1;
+//	float			y0;
+//	float			y1;
+//	float			dy;
+//	float			dx;
+//	float			*i;
+//	float			*f;
+//	float			k;
+	struct s_glist	d0;
+	struct s_glist	d1;
+	short			dir;
 	float			k;
 	int				color;
 }					t_line;
 
 t_mlx				window(int w, int l);
 
-void				draw_vert(t_mlx win, t_line l);
+void				drawer(t_mlx win, t_line l);
 
-void				draw_wu_line(t_mlx win, t_line l);
+t_line				line(t_glist a, t_glist b, int color);
 
-t_line				line(int x0, int x1, int y0, int y1, int color);
+void				show_xyz(t_mlx win);
 
 //t_map				g_data;
 #endif
