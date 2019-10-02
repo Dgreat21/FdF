@@ -6,14 +6,12 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:03:49 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/02 09:03:21 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/02 11:09:18 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#define MOVE 5
-
-/*TODO : move struct work functions to new file*/
+#define MOVE 6000
 
 int		brightness0(int color, float k)
 {
