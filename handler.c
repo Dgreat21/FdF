@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:53:14 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/07 02:54:21 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/07 09:34:01 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,13 @@ t_map		mapper(int lines, int cols)
 	data.y = 0;
 	(data.i % 2) ? data.y++ : (0);
 	(data.j % 2) ? data.x++ : (0);
-	vardump("lin", lines);
-	vardump("col", cols);
 	return (data);
 }
 
 void		xyz(int *coords, char *str, t_glist **map, t_map data)
 {
-	const int i = coords[X];
-	const int j = coords[Y];
+	const int i = coords[Y];
+	const int j = coords[X];
 
 	if (!data.x)
 		map[i][j].x = (float)(j - data.j / 2);
@@ -59,34 +57,31 @@ void		xyz(int *coords, char *str, t_glist **map, t_map data)
 	map[i][j].z = ft_atoi(str);
 }
 
-//t_map		mapper_new(int lines, int cols)//TODO :
+//t_glist		mapper_new(int lines, int cols)
 //{
 //	t_glist	data;
 //
-//	data.i = lines;
-//	data.j = cols;
-//	data.x = 0;
-//	data.y = 0;
-//	(data.i % 2) ? data.y++ : (0);
-//	(data.j % 2) ? data.x++ : (0);
+//	data.y = lines;//i
+//	data.x = cols;//j
 //	return (data);
 //}
 
-//void		xyz_new(int *coords, char *str, t_glist **map, t_map data)
-//{
-//	const int i = coords[Y];
-//	const int j = coords[X];
-//
-//	if (!data.x)
-//		map[i][j].x = (float)(j - data.j / 2);
-//	else
-//		map[i][j].x = (float)(j) - (float)(data.j / 2);
-//	if (!data.y)
-//		map[i][j].y = (float)(i - data.i / 2);
-//	else
-//		map[i][j].y = (float)(i) - (float)(data.i / 2);
-//	map[i][j].z = ft_atoi(str);
-//}
+void		xyz_new(t_glist dot, char *str, t_glist **map, t_glist data)
+{
+	const int i = dot.y;
+	const int j = dot.x;
+
+	if (!((int)data.x % 2))
+		map[i][j].x = (float)(j - data.x / 2);
+	else
+		map[i][j].x = (float)(j) - (float)(data.x / 2);
+	if (!((int)data.y % 2))
+		map[i][j].y = (float)(i - data.y / 2);
+	else
+		map[i][j].y = (float)(i) - (float)(data.y / 2);
+	map[i][j].z = ft_atoi(str);
+	//vardot("KARMA", map[i][j]);
+}
 
 t_glist		**allocator(t_map data)
 {
@@ -115,34 +110,34 @@ t_glist		**allocator(t_map data)
 	return (map);
 }
 
-//t_glist		**allocator(t_glist data)// TODO: remove t_map arch
-//{
-//	int		i;
-//	int		cl;
-//	t_glist	**map;
-//
-//	i = 0;
-//	cl = 0;
-//	if ((map = (t_glist **)malloc((data.mid[Y]) * sizeof(t_glist *))) == NULL)
-//		error_notice("Malloc error");
-//	while (i < data.mid[Y])
-//	{
-//		if ((map[i] = (t_glist *)malloc((data.mid[X]) * sizeof(t_glist))) == NULL)
-//		{
-//			while (cl < i)
-//			{
-//				free(map[cl]);
-//				cl++;
-//			}
-//			free(map);
-//			error_notice("Lines malloc error");
-//		}
-//		i++;
-//	}
-//	return (map);
-//}
+t_glist		**allocator_new(t_glist data)// TODO: remove t_map arch
+{
+	int		i;
+	int		cl;
+	t_glist	**map;
 
-void		filler(t_map data, t_glist **map, char **stock)//todo new arch
+	i = 0;
+	cl = 0;
+	if ((map = (t_glist **)malloc((data.y) * sizeof(t_glist *))) == NULL)
+		error_notice("Malloc error");
+	while (i < data.y)
+	{
+		if ((map[i] = (t_glist *)malloc((data.x) * sizeof(t_glist))) == NULL)
+		{
+			while (cl < i)
+			{
+				free(map[cl]);
+				cl++;
+			}
+			free(map);
+			error_notice("Lines malloc error");
+		}
+		i++;
+	}
+	return (map);
+}
+
+void		filler(t_map data, t_glist **map, char **stock)
 {
 	int		i;
 	int		j;
@@ -161,45 +156,39 @@ void		filler(t_map data, t_glist **map, char **stock)//todo new arch
 //		}
 		j = -1;
 		line = ft_strsplit(stock[i], ' ');
-		vardump("data.j", data.j);//todo seg
 		while (++j < data.j)
 		{
-			vardump("j", j);
 			coords[0] = i;
 			coords[1] = j;
 			xyz(coords, line[j], map, data);
 		}
-		vardump("i", i);
 	}
 }
 
-//void		filler_new(t_map data, t_glist **map, char **stock)//todo new arch
-//{
-//	int		i;
-//	int		j;
-//	char	**line;
-//	t_glist	dot;
-//
-//	i = -1;
-//	while (++i < data.i)
-//	{
-//		if (data.j != ft_word_counter(stock[i], ' '))
-////		{
-////			free_map(lines);
-////			free_str(line, cols);
-////			free_str(stock, lines);
-//			error_notice("wrong coordinates number");
-////		}
-//		j = -1;
-//		line = ft_strsplit(stock[i], ' ');
-//		while (++j < data.j)
+t_glist		**filler_new(t_glist data, t_glist **map, char **stock)//todo new arch
+{
+	int		i;
+	int		j;
+	char	**line;
+	t_glist	dot;
+
+	i = -1;
+	while (++i < data.y)
+	{
+		if (data.x != ft_word_counter(stock[i], ' '))
 //		{
-//			coords[0] = i;
-//			coords[1] = j;
-//			xyz(coords, line[j], *map, data);
+//			free_map(lines);
+//			free_str(line, cols);
+//			free_str(stock, lines);
+			error_notice("wrong coordinates number");
 //		}
-//	}
-//}
+		j = -1;
+		line = ft_strsplit(stock[i], ' ');
+		while (++j < data.x)
+			xyz_new(set_dot(j, i), line[j], map, data);
+	}
+	return (map);
+}
 
 void		checker(char *buf)
 {
@@ -216,36 +205,46 @@ void		checker(char *buf)
 	data = mapper(lines, cols);
 	map = allocator(data);
 	filler(data, map, stock);
+
 }
 
-//void		checker_new(char *buf, int lines, int cols)
-//{
-//	char	**stock;
-//	t_glist	**map;
-//	t_glist	data;
-//
-//	lines = ft_word_counter(buf, '\n');
-//	stock = ft_strsplit(buf, '\n');
-//	cols = ft_word_counter(stock[0], ' ');
-//	data = mapper(lines, cols);
-//	map = allocator(data);
-//	filler(data, map, stock);
-//}
-
-void		reader(int fd)
+t_glist		**checker_new(char *buf, t_mlx *win)
 {
-	int			i;
-	int			j;
-	int			lines;
-	int			cols;
+	char	**stock;
+	t_glist	**map;
+	t_glist	data;
+
+	data.y = ft_word_counter(buf, '\n');
+	stock = ft_strsplit(buf, '\n');
+	data.x = ft_word_counter(stock[0], ' ');
+	map = allocator_new(data);
+	win->map = data;
+	vardot("test", win->map);
+	map = filler_new(data, map, stock);
+	return (map);
+}
+
+void		reader(int fd)//todo  - получение win.map
+{
 	char		buf[BUFF_SIZE];
 	char		**line;
+	t_glist		**map;
+	t_mlx		win;
 
-	i = 0;
-	j = 0;
 	read(fd, buf, BUFF_SIZE);
-	checker(buf);
-	error_notice("debug");
+	map = checker_new(buf, &win);
+	win = window(1000, 1000);
+	win.opt.dt_mode = 1;
+	win.opt.axis = 0;
+//	vardot("win.map", win.map);
+//	error_notice("fuck debug");
+	win.map = set_dot(19, 11);
+	vardot("", map[0][0]);
+//	ft_foreach(win, map, vardot);
+	draw_map(win, map);
+	mlx_loop(win.mp);
+	//error_notice("debug");
+
 }
 
 int			main(int argc, char **argv)

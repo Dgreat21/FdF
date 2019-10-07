@@ -6,24 +6,12 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 03:26:25 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/07 06:58:34 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/07 09:37:28 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #define COLOR WHITE
-
-//void    ft_foreach(int *tab, int length, void (*f)(int))
-//{
-//	int     i;
-//
-//	i = 0;
-//	while (i < length)
-//	{
-//		(*f)(tab[i]);
-//		i++;
-//	}
-//}
 
 t_glist	drw_dt_dim(t_mlx win, t_glist dot)//to dimetry
 {
@@ -45,38 +33,38 @@ t_glist	drw_dt_iso(t_mlx win, t_glist dot)//to isometry
 	return(set_dot(x, y));
 }
 
-// void	ft_foreach(t_mlx win, t_glist **tab, unsigned int *len,
-// 		void (*f)(win, t_glist, int))
-// {
-// 	int		i;
-// 	int		j;
+ void	ft_foreach(t_mlx win, t_glist **tab, void (*f)(char *, t_glist))
+ {
+ 	int		i;
+ 	int		j;
 
-// 	i = -1;
-// 	while (++i < len[0])
-// 	{
-// 		j = -1;
-// 		while (++j < len[1])
-// 		{
-// 			(*f)(tab[i][j]);
-// 		}
-// 	}
-// }
+ 	i = -1;
+ 	while (++i < win.map.y)
+ 	{
+ 		j = -1;
+ 		while (++j < win.map.x)
+ 		{
+ 			(*f)(ft_itoa(i * win.map.x + j), tab[i][j]);
+ 		}
+ 	}
+ }
 
-void	ft_foreach_dot(t_mlx win, t_glist **tab, unsigned int *len,
-		t_glist (*f)(t_mlx , t_glist))
+void	ft_foreach_dot(t_mlx win, t_glist **tab, t_glist (*f)(t_mlx , t_glist))// todo segmentation fault
 {
 	int		i;
 	int		j;
 
 	i = -1;
-	while (++i < len[0])
+	while (++i < win.map.y)
 	{
-		j = 0;
-		while (++j < len[1])
+		j = -1;
+		while (++j < win.map.x)
 		{
+			vardump("j", j);
 			if (win.opt.dt_mode)
 			{
-				(j == 1) ? (pixel(win, (*f)(win, tab[i - 1][j - 1]), COLOR)) : ();
+//				pixel(win, tab[i][j], COLOR);
+				(j == 1) ? (pixel(win, (*f)(win, tab[i - 1][j - 1]), COLOR)) : (0);
 				pixel(win, (*f)(win, tab[i][j]), COLOR);
 			}
 			else
@@ -84,6 +72,7 @@ void	ft_foreach_dot(t_mlx win, t_glist **tab, unsigned int *len,
 				drawer(win, line((*f)(win, tab[i][j]), (*f)(win, tab[i - 1][j - 1]), COLOR));
 			}
 		}
+
 	}
 }
 
@@ -91,8 +80,11 @@ void	ft_foreach_dot(t_mlx win, t_glist **tab, unsigned int *len,
 
 void	draw_map( t_mlx win, t_glist **map)
 {
-	ft_foreach(win, map, drw_dt_dim);
+//	vardot("test1", map[0][0]);
+//	ft_foreach(win, map, vardot);
+	ft_foreach_dot(win, map, drw_dt_iso);
 }
+
 //void	my_test()
 //{
 //	mlx_new_image();

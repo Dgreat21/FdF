@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:03:49 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/07 06:46:52 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/07 07:46:52 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,76 +139,76 @@ void	drawer(t_mlx win, t_line l)
 // 	drawer(win, d3);
 // }
 
-void	ft_foreach_dot(t_mlx win, t_glist **tab, unsigned int *len,
-		t_glist (*f)(t_mlx, t_glist)
-{
-	int		i;
-	int		j;
-
-
-	i = -1;
-	while (++i < len[0])
-	{
-		j = -1;
-		while (++j < len[1])
-		{
-			if (win.opt.dt_mode)
-				(*f)(tab[i][j]);
-			else
-			{
-				++j;
-				(*f)(tab[i][j]);
-				drawer(win, line(tab[i][j], )
-			}
-		}
-	}
-}
-
-int		main(void)
-{
-	t_mlx	win;
-//	int		color;
-//	t_line	l;
-	t_glist	o;
-	t_glist	a;
-	t_glist	b;
-	t_glist	c;
-
-
-//	o = set_dot(500 - MOVE, 500 - MOVE);
-//	a = set_dot(500 + MOVE, 500 - MOVE);
-//	b = set_dot(500 - MOVE, 500 + MOVE);
-//	c = set_dot(500 + MOVE, 500 + MOVE);
-	win = window(1000, 1000);
-	//color = ft_atoi_base(av[1], 16);
-//	show_x(win, o);
-//	show_y(win, o);
-//	show_a(win, o);
-//	show_b(win, o);
-//	show_c(win, o);
-//	show_d(win, o);
+//void	ft_foreach_dot(t_mlx win, t_glist **tab, unsigned int *len,
+//		t_glist (*f)(t_mlx, t_glist)
+//{
+//	int		i;
+//	int		j;
 //
-//	show_x(win, a);
-//	show_y(win, a);
-//	show_a(win, a);
-//	show_b(win, a);
-//	show_c(win, a);
-//	show_d(win, a);
 //
-//	show_x(win, b);
-//	show_y(win, b);
-//	show_a(win, b);
-//	show_b(win, b);
-//	show_c(win, b);
-//	show_d(win, b);
+//	i = -1;
+//	while (++i < len[0])
+//	{
+//		j = -1;
+//		while (++j < len[1])
+//		{
+//			if (win.opt.dt_mode)
+//				(*f)(tab[i][j]);
+//			else
+//			{
+//				++j;
+//				(*f)(tab[i][j]);
+//				drawer(win, line(tab[i][j], )
+//			}
+//		}
+//	}
+//}
+
+//int		main(void)
+//{
+//	t_mlx	win;
+////	int		color;
+////	t_line	l;
+//	t_glist	o;
+//	t_glist	a;
+//	t_glist	b;
+//	t_glist	c;
 //
-//	show_x(win, c);
-//	show_y(win, c);
-//	show_a(win, c);
-//	show_b(win, c);
-//	show_c(win, c);
-//	show_d(win, c);
-	//show_xyz(win);
-	mlx_loop(win.mp);
-	return (0);
-}
+//
+////	o = set_dot(500 - MOVE, 500 - MOVE);
+////	a = set_dot(500 + MOVE, 500 - MOVE);
+////	b = set_dot(500 - MOVE, 500 + MOVE);
+////	c = set_dot(500 + MOVE, 500 + MOVE);
+//	win = window(1000, 1000);
+//	//color = ft_atoi_base(av[1], 16);
+////	show_x(win, o);
+////	show_y(win, o);
+////	show_a(win, o);
+////	show_b(win, o);
+////	show_c(win, o);
+////	show_d(win, o);
+////
+////	show_x(win, a);
+////	show_y(win, a);
+////	show_a(win, a);
+////	show_b(win, a);
+////	show_c(win, a);
+////	show_d(win, a);
+////
+////	show_x(win, b);
+////	show_y(win, b);
+////	show_a(win, b);
+////	show_b(win, b);
+////	show_c(win, b);
+////	show_d(win, b);
+////
+////	show_x(win, c);
+////	show_y(win, c);
+////	show_a(win, c);
+////	show_b(win, c);
+////	show_c(win, c);
+////	show_d(win, c);
+//	//show_xyz(win);
+//	mlx_loop(win.mp);
+//	return (0);
+//}

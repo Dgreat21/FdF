@@ -12,6 +12,8 @@ all: $(NAME)
 
 $(NAME):
 		cc -o $(NAME) -I /usr/local/include fdf.c libft/libft.a main.c struct.c -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
+coml:
+		cc -o test -I /usr/local/include handler.c lines.c fdf.c libft/libft.a main.c struct.c -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
 
 hand:
 		gcc -o hand handler.c libft/libft.a

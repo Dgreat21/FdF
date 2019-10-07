@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:50:50 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/07 06:46:52 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/07 08:55:45 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct		s_opt
 	short			axis;
 }					t_opt;
 
-enum				e_O{X, Y};
+enum				e_O{Y, X};
 
 typedef struct		s_mlx
 {
@@ -80,6 +80,7 @@ typedef struct		s_mlx
 	int				w;
 	int				l;
 	int				mid[2];
+	t_glist			map;
 	struct s_opt	opt;
 }					t_mlx;
 
@@ -115,6 +116,10 @@ void				vardot(char *s, t_glist a);
 t_glist				set_dot(float x, float y);
 
 void				pixel(t_mlx win, t_glist dot, int color);
+
+void				draw_map( t_mlx win, t_glist **map);
+
+void				ft_foreach(t_mlx win, t_glist **tab, void (*f)(char *, t_glist));
 
 //t_map				g_data;
 #endif
