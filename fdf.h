@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:50:50 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/02 08:51:37 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/07 06:46:52 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft/libft.h"
 # include <math.h>
 # define LEN 100
+# define PI 3.14159265359
 
 # define AQUA 0x00ffff
 # define BLACK 0x000000
@@ -60,13 +61,26 @@ typedef union		u_color
 	t_argb			rgb;
 }					t_color;
 
+typedef struct		s_opt
+{
+	short			rot;//rotation
+	short			grad;//gradient
+	short			xyz;//show xyz
+	unsigned int	scale;//scale
+	short			dt_mode;//dot mode
+	short			axis;
+}					t_opt;
+
+enum				e_O{X, Y};
+
 typedef struct		s_mlx
 {
 	void			*mp;
 	void			*wp;
 	int				w;
 	int				l;
-	short			f;
+	int				mid[2];
+	struct s_opt	opt;
 }					t_mlx;
 
 typedef struct		s_map//TODO исправить это гавно, остатки ГК
@@ -99,6 +113,8 @@ void				swap_glist(t_glist *a, t_glist *b);
 void				vardot(char *s, t_glist a);
 
 t_glist				set_dot(float x, float y);
+
+void				pixel(t_mlx win, t_glist dot, int color);
 
 //t_map				g_data;
 #endif
