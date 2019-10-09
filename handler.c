@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:53:14 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/07 09:34:01 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/08 02:11:42 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,44 +28,6 @@ void		free_map(int lines, t_glist **map)
 	free(map);
 }
 
-t_map		mapper(int lines, int cols)
-{
-	t_map	data;
-
-	data.i = lines;
-	data.j = cols;
-	data.x = 0;
-	data.y = 0;
-	(data.i % 2) ? data.y++ : (0);
-	(data.j % 2) ? data.x++ : (0);
-	return (data);
-}
-
-void		xyz(int *coords, char *str, t_glist **map, t_map data)
-{
-	const int i = coords[Y];
-	const int j = coords[X];
-
-	if (!data.x)
-		map[i][j].x = (float)(j - data.j / 2);
-	else
-		map[i][j].x = (float)(j) - (float)(data.j / 2);
-	if (!data.y)
-		map[i][j].y = (float)(i - data.i / 2);
-	else
-		map[i][j].y = (float)(i) - (float)(data.i / 2);
-	map[i][j].z = ft_atoi(str);
-}
-
-//t_glist		mapper_new(int lines, int cols)
-//{
-//	t_glist	data;
-//
-//	data.y = lines;//i
-//	data.x = cols;//j
-//	return (data);
-//}
-
 void		xyz_new(t_glist dot, char *str, t_glist **map, t_glist data)
 {
 	const int i = dot.y;
@@ -81,33 +43,6 @@ void		xyz_new(t_glist dot, char *str, t_glist **map, t_glist data)
 		map[i][j].y = (float)(i) - (float)(data.y / 2);
 	map[i][j].z = ft_atoi(str);
 	//vardot("KARMA", map[i][j]);
-}
-
-t_glist		**allocator(t_map data)
-{
-	int		i;
-	int		cl;
-	t_glist	**map;
-
-	i = 0;
-	cl = 0;
-	if ((map = (t_glist **)malloc((data.i) * sizeof(t_glist *))) == NULL)
-		error_notice("Malloc error");
-	while (i < data.i)
-	{
-		if ((map[i] = (t_glist *)malloc((data.j) * sizeof(t_glist))) == NULL)
-		{
-			while (cl < i)
-			{
-				free(map[cl]);
-				cl++;
-			}
-			free(map);
-			error_notice("Lines malloc error");
-		}
-		i++;
-	}
-	return (map);
 }
 
 t_glist		**allocator_new(t_glist data)// TODO: remove t_map arch
@@ -137,33 +72,7 @@ t_glist		**allocator_new(t_glist data)// TODO: remove t_map arch
 	return (map);
 }
 
-void		filler(t_map data, t_glist **map, char **stock)
-{
-	int		i;
-	int		j;
-	int		coords[2];
-	char	**line;
 
-	i = -1;
-	while (++i < data.i)
-	{
-		if (data.j != ft_word_counter(stock[i], ' '))
-//		{
-//			free_map(lines);
-//			free_str(line, cols);
-//			free_str(stock, lines);
-			error_notice("wrong coordinates number");
-//		}
-		j = -1;
-		line = ft_strsplit(stock[i], ' ');
-		while (++j < data.j)
-		{
-			coords[0] = i;
-			coords[1] = j;
-			xyz(coords, line[j], map, data);
-		}
-	}
-}
 
 t_glist		**filler_new(t_glist data, t_glist **map, char **stock)//todo new arch
 {
@@ -188,24 +97,6 @@ t_glist		**filler_new(t_glist data, t_glist **map, char **stock)//todo new arch
 			xyz_new(set_dot(j, i), line[j], map, data);
 	}
 	return (map);
-}
-
-void		checker(char *buf)
-{
-	char	**stock;
-	t_glist	**map;
-	t_map	data;
-	int		lines;
-	int		cols;
-
-
-	lines = ft_word_counter(buf, '\n');
-	stock = ft_strsplit(buf, '\n');
-	cols = ft_word_counter(stock[0], ' ');
-	data = mapper(lines, cols);
-	map = allocator(data);
-	filler(data, map, stock);
-
 }
 
 t_glist		**checker_new(char *buf, t_mlx *win)
@@ -233,14 +124,15 @@ void		reader(int fd)//todo  - получение win.map
 
 	read(fd, buf, BUFF_SIZE);
 	map = checker_new(buf, &win);
-	win = window(1000, 1000);
+	win = window(WIDE, LENGTH);
 	win.opt.dt_mode = 1;
 	win.opt.axis = 0;
 //	vardot("win.map", win.map);
-//	error_notice("fuck debug");
 	win.map = set_dot(19, 11);
 	vardot("", map[0][0]);
-//	ft_foreach(win, map, vardot);
+	ft_foreach(win, map, vardot);
+
+	error_notice("fuck debug");
 	draw_map(win, map);
 	mlx_loop(win.mp);
 	//error_notice("debug");

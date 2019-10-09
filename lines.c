@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 03:26:25 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/07 09:37:28 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/09 22:24:16 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_glist	drw_dt_dim(t_mlx win, t_glist dot)//to dimetry
 	return(set_dot(x, y));
 }
 
-t_glist	drw_dt_iso(t_mlx win, t_glist dot)//to isometry
+t_glist	drw_dt_iso(t_mlx win, t_glist dot)//to isometry .. еще надо сделать не dot_mode
 {
 	float	x;
 	float	y;
@@ -59,24 +59,21 @@ void	ft_foreach_dot(t_mlx win, t_glist **tab, t_glist (*f)(t_mlx , t_glist))// t
 	{
 		j = -1;
 		while (++j < win.map.x)
-		{
-			vardump("j", j);
-			if (win.opt.dt_mode)
-			{
-//				pixel(win, tab[i][j], COLOR);
-				(j == 1) ? (pixel(win, (*f)(win, tab[i - 1][j - 1]), COLOR)) : (0);
 				pixel(win, (*f)(win, tab[i][j]), COLOR);
-			}
-			else
-			{
-				drawer(win, line((*f)(win, tab[i][j]), (*f)(win, tab[i - 1][j - 1]), COLOR));
-			}
-		}
-
 	}
 }
 
+__attribute__ ((constructor)) void	start(void)
+{
+#include <stdio.h>
+	printf("START!");
+}
 
+__attribute__ ((destructor)) void	end(void)
+{
+#include <stdio.h>
+	printf("END!");
+}
 
 void	draw_map( t_mlx win, t_glist **map)
 {
@@ -85,9 +82,4 @@ void	draw_map( t_mlx win, t_glist **map)
 	ft_foreach_dot(win, map, drw_dt_iso);
 }
 
-//void	my_test()
-//{
-//	mlx_new_image();
-//	mlx_put_image_to_window();
-//
-//}
+

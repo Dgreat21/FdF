@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:50:50 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/07 08:55:45 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/08 02:13:26 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <math.h>
 # define LEN 100
 # define PI 3.14159265359
+# define WIDE 1000
+# define LENGTH 1000
 
 # define AQUA 0x00ffff
 # define BLACK 0x000000
@@ -83,14 +85,6 @@ typedef struct		s_mlx
 	t_glist			map;
 	struct s_opt	opt;
 }					t_mlx;
-
-typedef struct		s_map//TODO исправить это гавно, остатки ГК
-{
-	int				i;
-	int				j;
-	int				x;
-	int				y;
-}					t_map;
 
 typedef struct		s_line
 {
