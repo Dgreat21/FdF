@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:50:50 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/08 02:13:26 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/15 22:29:00 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct		s_mlx
 	int				l;
 	int				mid[2];
 	t_glist			map;
+	unsigned int	dist;
 	struct s_opt	opt;
 }					t_mlx;
 

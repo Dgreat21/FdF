@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 19:35:58 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/08 01:45:37 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/15 21:46:32 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_mlx	window(int w, int l)
 	win.l = l;
 	win.mid[X] = w / 2;
 	win.mid[Y] = l / 2;
+	win.dist = 1;
 	win.mp = mlx_init();
 	win.wp = mlx_new_window(win.mp, w, l, "fdf");
 	mlx_key_hook(win.wp, key, (void *)0);

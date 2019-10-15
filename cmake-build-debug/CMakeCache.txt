@@ -14,6 +14,9 @@
 # EXTERNAL cache entries
 ########################
 
+//Path to a library.
+APP_KIT:FILEPATH=/System/Library/Frameworks/AppKit.framework
+
 //Path to a program.
 CMAKE_AR:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar
 
@@ -148,7 +151,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=Project
+CMAKE_PROJECT_NAME:STATIC=fdf
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib
@@ -209,6 +212,9 @@ CMAKE_STRIP:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/Xcode
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Path to a library.
+OPEN_GL:FILEPATH=/System/Library/Frameworks/OpenGl.framework
+
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
 
@@ -217,6 +223,12 @@ Project_BINARY_DIR:STATIC=/Users/dgreat/Documents/collab/cmake-build-debug
 
 //Value Computed by CMake
 Project_SOURCE_DIR:STATIC=/Users/dgreat/Documents/collab
+
+//Value Computed by CMake
+fdf_BINARY_DIR:STATIC=/Users/dgreat/Documents/collab/cmake-build-debug
+
+//Value Computed by CMake
+fdf_SOURCE_DIR:STATIC=/Users/dgreat/Documents/collab
 
 
 ########################

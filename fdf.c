@@ -6,22 +6,17 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:03:49 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/08 01:45:49 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/13 19:48:13 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#define MOVE 100
-#define L 100
-
-
 
 int		brightness(t_color hue, float k)
 {
 	hue.rgb.r = round((float)hue.rgb.r * k);
 	hue.rgb.g = round((float)hue.rgb.g * k);
 	hue.rgb.b = round((float)hue.rgb.b * k);
-
 	return (hue.mlx);
 }
 
@@ -45,15 +40,15 @@ void	drawer(t_mlx win, t_line l)
 	if (l.dir)
 		while (++x <= end)
 		{
-			pixel(win, set_dot(x, y), brightness(hue, 1 - fract(y)));
-			pixel(win, set_dot(x, y + 1), brightness(hue, fract(y)));
+			pixel(win, set_dot(x, y), brightness(hue, 1 - fract(y)));//
+			pixel(win, set_dot(x, y + 1), brightness(hue, fract(y)));//
 			y += l.k;
 		}
 	else
 		while (++x <= end)
 		{
-			pixel(win, set_dot(y, x), brightness(hue, 1 - fract(x)));
-			pixel(win, set_dot(y + 1, x), brightness(hue, fract(x)));
+			pixel(win, set_dot(y, x), brightness(hue, 1 - fract(x)));//
+			pixel(win, set_dot(y + 1, x), brightness(hue, fract(x)));//
 			y += l.k;
 		}
 }

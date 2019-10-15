@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:53:14 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/08 02:11:42 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/16 00:03:33 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <stdio.h>
+#define SCALE 35
 
 void		free_map(int lines, t_glist **map)
 {
@@ -30,8 +31,8 @@ void		free_map(int lines, t_glist **map)
 
 void		xyz_new(t_glist dot, char *str, t_glist **map, t_glist data)
 {
-	const int i = dot.y;
-	const int j = dot.x;
+	const int	i = dot.y;
+	const int	j = dot.x;
 
 	if (!((int)data.x % 2))
 		map[i][j].x = (float)(j - data.x / 2);
@@ -42,10 +43,9 @@ void		xyz_new(t_glist dot, char *str, t_glist **map, t_glist data)
 	else
 		map[i][j].y = (float)(i) - (float)(data.y / 2);
 	map[i][j].z = ft_atoi(str);
-	//vardot("KARMA", map[i][j]);
 }
 
-t_glist		**allocator_new(t_glist data)// TODO: remove t_map arch
+t_glist		**allocator_new(t_glist data)
 {
 	int		i;
 	int		cl;
@@ -72,9 +72,7 @@ t_glist		**allocator_new(t_glist data)// TODO: remove t_map arch
 	return (map);
 }
 
-
-
-t_glist		**filler_new(t_glist data, t_glist **map, char **stock)//todo new arch
+t_glist		**filler_new(t_glist data, t_glist **map, char **stock)
 {
 	int		i;
 	int		j;
@@ -109,8 +107,7 @@ t_glist		**checker_new(char *buf, t_mlx *win)
 	stock = ft_strsplit(buf, '\n');
 	data.x = ft_word_counter(stock[0], ' ');
 	map = allocator_new(data);
-	win->map = data;
-	vardot("test", win->map);
+	(*win).map = data;
 	map = filler_new(data, map, stock);
 	return (map);
 }
@@ -127,16 +124,8 @@ void		reader(int fd)//todo  - получение win.map
 	win = window(WIDE, LENGTH);
 	win.opt.dt_mode = 1;
 	win.opt.axis = 0;
-//	vardot("win.map", win.map);
-	win.map = set_dot(19, 11);
-	vardot("", map[0][0]);
-	ft_foreach(win, map, vardot);
-
-	error_notice("fuck debug");
 	draw_map(win, map);
 	mlx_loop(win.mp);
-	//error_notice("debug");
-
 }
 
 int			main(int argc, char **argv)

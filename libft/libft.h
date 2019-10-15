@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:42:41 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/08 01:45:37 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/15 21:16:05 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void				ft_lst_clear(t_list *lst);
 
 t_list				*ft_lstadd_end(t_list *head, t_list *elem);
 
-void				vardump(char *str, int a);
+char				*vardump(char *str, int a);
 
 void				ft_putnbr_base(unsigned int nb, size_t base, short flag);
 
