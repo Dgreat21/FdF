@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 08:49:56 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/02 08:49:56 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/16 21:17:24 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@ t_glist	set_dot(float x, float y)
 
 	dot.x = x;
 	dot.y = y;
+	return (dot);
+}
+
+t_glist	set_xyz(float x, float y, float z)
+{
+	t_glist	dot;
+
+	dot.x = x;
+	dot.y = y;
+	dot.z = z;
 	return (dot);
 }
 
@@ -39,7 +49,7 @@ void	swap_glist(t_glist *a, t_glist *b)
 	ft_fswap(&(a->y), &(b->y));
 }
 
-t_line	line(t_glist a, t_glist b, int color)
+t_line	line(t_glist a, t_glist b, t_color color)
 {
 	t_line	l;
 

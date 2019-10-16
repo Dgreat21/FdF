@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 19:35:58 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/15 21:46:32 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/16 21:27:07 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,25 @@ int		key(int key)
 	return (0);
 }
 
+void		xyz(t_mlx win, t_glist dot, char *str, t_glist cur_dot)
+{
+	const int	i = dot.y;
+	const int	j = dot.x;
+	const int	y = i * win.scale;
+	const int	x = j * win.scale;
+
+	if (!((int)win.map.x % 2))
+		cur_dot.x = ((float)(j - win.map.x / 2)) * win.scale;
+	else
+		cur_dot.x = ((float)(j) - (float)(win.map.x / 2)) * win.scale;
+	if (!((int)win.map.y % 2))
+		cur_dot.y = ((float)(i - win.map.y / 2)) * win.scale;
+	else
+		cur_dot.y = ((float)(i) - (float)(win.map.y / 2)) * win.scale;
+	cur_dot.z = ft_atoi(str) * (win.scale / 2);
+	cur_dot.color.mlx = -1;
+}
+
 t_mlx	window(int w, int l)
 {
 	t_mlx	win;
@@ -56,7 +75,7 @@ t_mlx	window(int w, int l)
 	win.l = l;
 	win.mid[X] = w / 2;
 	win.mid[Y] = l / 2;
-	win.dist = 1;
+	win.scale = 20;
 	win.mp = mlx_init();
 	win.wp = mlx_new_window(win.mp, w, l, "fdf");
 	mlx_key_hook(win.wp, key, (void *)0);

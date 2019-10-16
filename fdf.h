@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:50:50 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/15 22:29:00 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/16 21:27:07 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,6 @@
 # define G 0x00FF00
 # define B 0x0000FF
 
-typedef struct		s_glist
-{
-	float			x;
-	float			y;
-	float			z;
-	int				color;
-}					t_glist;
-
 typedef struct		s_argb
 {
 	unsigned char	b;
@@ -63,12 +55,19 @@ typedef union		u_color
 	t_argb			rgb;
 }					t_color;
 
+typedef struct		s_glist
+{
+	float			x;
+	float			y;
+	float			z;
+	t_color			color;
+}					t_glist;
+
 typedef struct		s_opt
 {
 	short			rot;//rotation
 	short			grad;//gradient
 	short			xyz;//show xyz
-	unsigned int	scale;//scale
 	short			dt_mode;//dot mode
 	short			axis;
 }					t_opt;
@@ -83,7 +82,7 @@ typedef struct		s_mlx
 	int				l;
 	int				mid[2];
 	t_glist			map;
-	unsigned int	dist;
+	unsigned int	scale;
 	struct s_opt	opt;
 }					t_mlx;
 
@@ -93,7 +92,7 @@ typedef struct		s_line
 	struct s_glist	d1;
 	short			dir;
 	float			k;
-	int				color;
+	t_color			color;
 }					t_line;
 
 t_mlx				window(int w, int l);
@@ -110,11 +109,17 @@ void				vardot(char *s, t_glist a);
 
 t_glist				set_dot(float x, float y);
 
+t_glist				set_xyz(float x, float y, float z)
+
 void				pixel(t_mlx win, t_glist dot, int color);
 
 void				draw_map( t_mlx win, t_glist **map);
 
 void				ft_foreach(t_mlx win, t_glist **tab, void (*f)(char *, t_glist));
+
+t_glist				drw_dt_iso(t_mlx win, t_glist dot);
+
+t_glist				drw_dt_dim(t_mlx win, t_glist dot);
 
 //t_map				g_data;
 #endif

@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:53:14 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/16 00:03:33 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/16 20:00:22 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,25 @@ void		xyz_new(t_glist dot, char *str, t_glist **map, t_glist data)
 		map[i][j].y = (float)(i) - (float)(data.y / 2);
 	map[i][j].z = ft_atoi(str);
 }
+
+//void		xyz_new(t_glist dot, char *str, t_glist **map, t_glist data)
+//{
+//	const int	i = dot.y;
+//	const int	j = dot.x;
+//	const int	y = i * SCALE;
+//	const int	x = j * SCALE;
+//
+//	if (!((int)data.x % 2))
+//		map[i][j].x = ((float)(j - data.x / 2)) * SCALE;
+//	else
+//		map[i][j].x = ((float)(j) - (float)(data.x / 2)) * SCALE;
+//	if (!((int)data.y % 2))
+//		map[i][j].y = ((float)(i - data.y / 2)) * SCALE;
+//	else
+//		map[i][j].y = ((float)(i) - (float)(data.y / 2)) * SCALE;
+//	map[i][j].z = ft_atoi(str) * (SCALE / 2);
+//	map[i][j].color.mlx = -1;
+//}
 
 t_glist		**allocator_new(t_glist data)
 {
