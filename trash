@@ -26,15 +26,15 @@ void	drawer_0(t_mlx win, t_line l)
 	if (l.dir)
 		while (++i <= end)
 		{
-			mlx_pixel_put(win.mp, win.wp, (int)i, (int)f, brightness(hue, 1 - fract(f)));
-			mlx_pixel_put(win.mp, win.wp, (int)i, (int)f + 1, brightness(hue, fract(f)));
+			mlx_pixel_put(win.mp, win.wp, (int)i, (int)f, brightness(hue, 1 - frt(f)));
+			mlx_pixel_put(win.mp, win.wp, (int)i, (int)f + 1, brightness(hue, frt(f)));
 			f += l.k;
 		}
 	else
 		while (++f <= end)
 		{
-			mlx_pixel_put(win.mp, win.wp, (int)i, (int)f, brightness(hue, 1 - fract(i)));
-			mlx_pixel_put(win.mp, win.wp, (int)i + 1, (int)f, brightness(hue, fract(i)));
+			mlx_pixel_put(win.mp, win.wp, (int)i, (int)f, brightness(hue, 1 - frt(i)));
+			mlx_pixel_put(win.mp, win.wp, (int)i + 1, (int)f, brightness(hue, frt(i)));
 			i += l.k;
 		}
 }
@@ -105,8 +105,8 @@ void	drawer_0(t_mlx win, t_line l)
 //	x = l.x0;
 //	while (++x <= l.x1 - 1)
 //	{
-//		mlx_pixel_put(win.mp, win.wp, x, (int) y, brightness(l.color, 1 - fract(y)));
-//		mlx_pixel_put(win.mp, win.wp, x, (int) y + 1, brightness(l.color, fract(y)));
+//		mlx_pixel_put(win.mp, win.wp, x, (int) y, brightness(l.color, 1 - frt(y)));
+//		mlx_pixel_put(win.mp, win.wp, x, (int) y + 1, brightness(l.color, frt(y)));
 //		y += grad;
 //	}
 //}
@@ -128,8 +128,8 @@ void	drawer_0(t_mlx win, t_line l)
 ////		x = l.x0;
 ////		while (++x <= l.x1 - 1)
 ////		{
-////			mlx_pixel_put(win.mp, win.wp, x, (int)y, brightness(l.color, 1 - fract(y)));
-////			mlx_pixel_put(win.mp, win.wp, x, (int)y + 1, brightness(l.color, fract(y)));
+////			mlx_pixel_put(win.mp, win.wp, x, (int)y, brightness(l.color, 1 - frt(y)));
+////			mlx_pixel_put(win.mp, win.wp, x, (int)y + 1, brightness(l.color, frt(y)));
 ////			y += grad;
 ////		}
 //		draw(win, l.y0, l.y1, l.x0, l.x1);
@@ -141,8 +141,8 @@ void	drawer_0(t_mlx win, t_line l)
 ////		y = l.y0;
 ////		while (++y <= l.y1 - 1)
 ////		{
-////			mlx_pixel_put(win.mp, win.wp, (int)x,  y, brightness(l.color, 1 - fract(x)));
-////			mlx_pixel_put(win.mp, win.wp, (int)x + 1, y, brightness(l.color, fract(x)));
+////			mlx_pixel_put(win.mp, win.wp, (int)x,  y, brightness(l.color, 1 - frt(x)));
+////			mlx_pixel_put(win.mp, win.wp, (int)x + 1, y, brightness(l.color, frt(x)));
 ////			x += grad;
 ////		}
 //		draw(win, l.x0, l.x1, l.y0, l.y1);
@@ -192,8 +192,8 @@ void	drawer_0(t_mlx win, t_line l)
 //	i = (int)i0;
 //	while (++i <= i1 - 1)
 //	{
-//		mlx_pixel_put(win.mp, win.wp, i, (int) f, brightness(color, 1 - fract(f)));
-//		mlx_pixel_put(win.mp, win.wp, i, (int) f + 1, brightness(l.color, fract(f)));
+//		mlx_pixel_put(win.mp, win.wp, i, (int) f, brightness(color, 1 - frt(f)));
+//		mlx_pixel_put(win.mp, win.wp, i, (int) f + 1, brightness(l.color, frt(f)));
 //		f += grad;
 //	}
 //}
@@ -213,15 +213,15 @@ void	drawer_0(t_mlx win, t_line l)
 //	if (l.dir)
 //		while (++x <= end)
 //		{
-//			pixel(win, set_dot(x, y), brightness(hue, 1 - fract(y)));
-//			pixel(win, set_dot(x, y + 1), brightness(hue, fract(y)));
+//			pixel(win, set_dot(x, y), brightness(hue, 1 - frt(y)));
+//			pixel(win, set_dot(x, y + 1), brightness(hue, frt(y)));
 //			y += l.k;
 //		}
 //	else
 //		while (++x <= end)// часть которая работает по y
 //		{
-//			pixel(win, set_dot(y, x), brightness(hue, 1 - fract(x)));
-//			pixel(win, set_dot(y + 1, x), brightness(hue, fract(x)));
+//			pixel(win, set_dot(y, x), brightness(hue, 1 - frt(x)));
+//			pixel(win, set_dot(y + 1, x), brightness(hue, frt(x)));
 //			y += l.k;
 //		}
 //}

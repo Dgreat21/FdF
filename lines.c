@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 03:26:25 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/16 20:16:11 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/18 05:47:14 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,13 @@ void		create_proj(t_mlx win, t_glist **tab, t_glist (*f)(t_mlx, t_glist))
 		{
 			a = f(win, tab[i][j]);
 			b = f(win, tab[i][j + 1]);
-			drawer(win, line(a, b, WHITE));
+			drawer(win, line(a, b));
 			b = f(win, tab[i + 1][j]);
-			drawer(win, line(a, b, WHITE));
+			drawer(win, line(a, b));
 			a = f(win, tab[i + 1][j + 1]);
-			drawer(win, line(b, a, WHITE));
+			drawer(win, line(b, a));
 		}
-		drawer(win, line(f(win, tab[i][j]), f(win, tab[i + 1][j]), WHITE));
+		drawer(win, line(f(win, tab[i][j]), f(win, tab[i + 1][j])));
 	}
 }
 
@@ -117,20 +117,26 @@ void		create_proj_grad(t_mlx win, t_glist **tab, t_glist (*f)(t_mlx, t_glist))
 		{
 			a = f(win, tab[i][j]);
 			b = f(win, tab[i][j + 1]);
-			drawer(win, line(a, b, WHITE));
+			drawer_grad(win, line(a, b));
 			b = f(win, tab[i + 1][j]);
-			drawer(win, line(a, b, WHITE));
+			drawer_grad(win, line(a, b));
 			a = f(win, tab[i + 1][j + 1]);
-			drawer(win, line(b, a, WHITE));
+			drawer_grad(win, line(b, a));
 		}
-		drawer_grad(win, line(f(win, tab[i][j]), f(win, tab[i + 1][j]), WHITE));
+		drawer_grad(win, line(f(win, tab[i][j]), f(win, tab[i + 1][j])));
 	}
 }
 
 void		draw_map(t_mlx win, t_glist **map)
 {
+//	t_glist a, b;
+//
 //	ft_foreach(win, map, vardot);
-//	vardot("test1", map[9][0]);
+//	a = set_dot(100, 200);
+//	a.color.mlx = 0x00ff00;
+//	b = set_dot(500, 700);
+//	b.color.mlx = 0x0000ff;
+//	drawer_grad(win, line(a, b));
 	create_proj(win, map, drw_dt_iso);
 //	ft_foreach_dot(win, map, drw_dt_iso);
 }

@@ -6,27 +6,5 @@
 
 #IncludeRegexTransform: 
 
-/Users/dgreat/Documents/collab/libft/get_next_line.h
-fcntl.h
--
-
-/Users/dgreat/Documents/collab/libft/libft.h
-unistd.h
--
-stdlib.h
--
-string.h
--
-stdio.h
--
-get_next_line.h
-/Users/dgreat/Documents/collab/libft/get_next_line.h
-../minilibx/mlx.h
-/Users/dgreat/Documents/collab/minilibx/mlx.h
-
-/Users/dgreat/Documents/collab/libft/vardump.c
-libft.h
-/Users/dgreat/Documents/collab/libft/libft.h
-
-/Users/dgreat/Documents/collab/minilibx/mlx.h
+/Users/dgreat/Documents/collab/libft/fract.c
 

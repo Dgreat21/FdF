@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 08:49:56 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/16 21:17:24 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/18 04:19:29 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,10 @@ void	swap_glist(t_glist *a, t_glist *b)
 	ft_fswap(&(a->y), &(b->y));
 }
 
-t_line	line(t_glist a, t_glist b, t_color color)
+t_line	line(t_glist a, t_glist b)
 {
 	t_line	l;
 
-	l.color = color;
 	l.dir = 1;
 	l.d0 = a;
 	l.d1 = b;

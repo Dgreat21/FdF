@@ -6,30 +6,30 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 19:35:58 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/16 21:27:07 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/18 04:49:53 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "keys.h"
 
-void	show_xyz(t_mlx win)
-{
-	int		x0;
-	int		y0;
-	t_line	x;
-	t_line	y;
-	t_line	z;
-
-	x0 = win.l / 2;
-	y0 = win.w / 2;
-	x = line(set_dot(x0, y0), set_dot(win.l, y0), WHITE);
-	y = line(set_dot(x0, y0), set_dot(x0, 0), BLUE);
-	z = line(set_dot(x0, y0), set_dot(y0, x0 - y0), GREEN);
-	drawer(win, x);
-	drawer(win, y);
-	drawer(win, z);
-}
+//void	show_xyz(t_mlx win)
+//{
+//	int		x0;
+//	int		y0;
+//	t_line	x;
+//	t_line	y;
+//	t_line	z;
+//
+//	x0 = win.l / 2;
+//	y0 = win.w / 2;
+//	x = line(set_dot(x0, y0), set_dot(win.l, y0), WHITE);
+//	y = line(set_dot(x0, y0), set_dot(x0, 0), BLUE);
+//	z = line(set_dot(x0, y0), set_dot(y0, x0 - y0), GREEN);
+//	drawer(win, x);
+//	drawer(win, y);
+//	drawer(win, z);
+//}
 
 int		key(int key)
 {
@@ -75,7 +75,10 @@ t_mlx	window(int w, int l)
 	win.l = l;
 	win.mid[X] = w / 2;
 	win.mid[Y] = l / 2;
+	win.max_z = 0;
+	win.min_z = 0;
 	win.scale = 20;
+	win.opt.color.mlx = LIME;
 	win.mp = mlx_init();
 	win.wp = mlx_new_window(win.mp, w, l, "fdf");
 	mlx_key_hook(win.wp, key, (void *)0);

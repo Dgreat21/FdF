@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:50:50 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/16 21:27:07 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/18 04:31:44 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct		s_opt
 	short			xyz;//show xyz
 	short			dt_mode;//dot mode
 	short			axis;
+	t_color			color;
 }					t_opt;
 
 enum				e_O{Y, X};
@@ -84,6 +85,8 @@ typedef struct		s_mlx
 	t_glist			map;
 	unsigned int	scale;
 	struct s_opt	opt;
+	int				max_z;
+	int				min_z;
 }					t_mlx;
 
 typedef struct		s_line
@@ -99,9 +102,11 @@ t_mlx				window(int w, int l);
 
 void				drawer(t_mlx win, t_line l);
 
-t_line				line(t_glist a, t_glist b, int color);
+void				drawer_grad(t_mlx win, t_line l);
 
-void				show_xyz(t_mlx win);
+t_line				line(t_glist a, t_glist b);// t_color color
+
+//void				show_xyz(t_mlx win);
 
 void				swap_glist(t_glist *a, t_glist *b);
 
@@ -109,7 +114,7 @@ void				vardot(char *s, t_glist a);
 
 t_glist				set_dot(float x, float y);
 
-t_glist				set_xyz(float x, float y, float z)
+t_glist				set_xyz(float x, float y, float z);
 
 void				pixel(t_mlx win, t_glist dot, int color);
 
