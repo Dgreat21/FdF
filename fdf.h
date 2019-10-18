@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:50:50 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/18 04:31:44 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/18 04:52:33 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ typedef struct		s_line
 t_mlx				window(int w, int l);
 
 void				drawer(t_mlx win, t_line l);
+
+int					brightness(t_color hue, float k);
 
 void				drawer_grad(t_mlx win, t_line l);
 

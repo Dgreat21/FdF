@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:53:14 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/18 06:02:47 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/18 06:15:50 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ void		xyz_new(t_glist dot, char *str, t_glist **map, t_glist data)
 	else
 		map[i][j].y = ((float)(i) - (float)(data.y / 2)) * SCALE;
 	map[i][j].z = ft_atoi(str) * (SCALE / 2);
-	map[i][j].color.mlx = 0x0;
+	if (map[i][j].z >= 10)
+		map[i][j].color.mlx = BLUE;
+	else
+		map[i][j].color.mlx = WHITE;
 }
 
 t_glist		**allocator_new(t_glist data)

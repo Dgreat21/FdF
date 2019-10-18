@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 19:35:58 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/18 04:49:53 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/18 06:12:53 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,26 @@ int		key(int key)
 	return (0);
 }
 
-void		xyz(t_mlx win, t_glist dot, char *str, t_glist cur_dot)
+//void		xyz(t_mlx win, t_glist dot, char *str, t_glist *cur_dot)//todo дописать многофункциольную фунцию изменения координат
+//{
+//	const int	i = dot.y;
+//	const int	j = dot.x;
+//	const int	y = i * win.scale;
+//	const int	x = j * win.scale;
+//
+//	if (!((int)win.map.x % 2))
+//		(*cur_dot).x = ((float)(j - win.map.x / 2)) * win.scale;
+//	else
+//		(*cur_dot).x = ((float)(j) - (float)(win.map.x / 2)) * win.scale;
+//	if (!((int)win.map.y % 2))
+//		(*cur_dot).y = ((float)(i - win.map.y / 2)) * win.scale;
+//	else
+//		(*cur_dot).y = ((float)(i) - (float)(win.map.y / 2)) * win.scale;
+//	(*cur_dot).z = ft_atoi(str) * (win.scale / 2);
+//	(*cur_dot).color.mlx = 0x0;
+//}
+
+void		xyz(t_mlx win, t_glist dot, char *str, t_glist *cur_dot)
 {
 	const int	i = dot.y;
 	const int	j = dot.x;
@@ -55,15 +74,18 @@ void		xyz(t_mlx win, t_glist dot, char *str, t_glist cur_dot)
 	const int	x = j * win.scale;
 
 	if (!((int)win.map.x % 2))
-		cur_dot.x = ((float)(j - win.map.x / 2)) * win.scale;
+		(*cur_dot).x = ((float)(j - win.map.x / 2)) * win.scale;
 	else
-		cur_dot.x = ((float)(j) - (float)(win.map.x / 2)) * win.scale;
+		(*cur_dot).x = ((float)(j) - (float)(win.map.x / 2)) * win.scale;
 	if (!((int)win.map.y % 2))
-		cur_dot.y = ((float)(i - win.map.y / 2)) * win.scale;
+		(*cur_dot).y = ((float)(i - win.map.y / 2)) * win.scale;
 	else
-		cur_dot.y = ((float)(i) - (float)(win.map.y / 2)) * win.scale;
-	cur_dot.z = ft_atoi(str) * (win.scale / 2);
-	cur_dot.color.mlx = -1;
+		(*cur_dot).y = ((float)(i) - (float)(win.map.y / 2)) * win.scale;
+	(*cur_dot).z = ft_atoi(str) * (win.scale / 2);
+	//(*cur_dot).z = brightness()
+//	if ((*cur_dot).z == 10)
+
+
 }
 
 t_mlx	window(int w, int l)

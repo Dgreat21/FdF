@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 03:26:25 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/18 05:47:14 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/18 06:20:37 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,25 @@ void		ft_foreach(t_mlx win, t_glist **tab, void (*f)(char *, t_glist))
 	}
 }
 
+//void		ft_foreach_color(t_mlx win, t_glist **tab, void (*f)(t_mlx, ))
+//{
+//	int		i;
+//	int		j;
+//
+//	i = -1;
+//	while (++i < win.map.y)
+//	{
+//		j = -1;
+//		while (++j < win.map.x)
+//		{
+//			(*f)(ft_itoa(i * win.map.x + j), tab[i][j]);
+//		}
+//		//error_notice("THE EnD");
+//	}
+//}
+
 //пасхальная карта
-void	ft_foreach_dot(t_mlx win, t_glist **tab, t_glist (*f)(t_mlx , t_glist))
+void	ft_foreach_dot(t_mlx win, t_glist **tab, t_glist (*f)(t_mlx, t_glist))
 {
 	int		i;
 	int		j;
@@ -126,17 +143,31 @@ void		create_proj_grad(t_mlx win, t_glist **tab, t_glist (*f)(t_mlx, t_glist))
 		drawer_grad(win, line(f(win, tab[i][j]), f(win, tab[i + 1][j])));
 	}
 }
-
+void		vard(char *s, t_glist a)
+{
+	endl();
+	ft_putstr(s);
+	ft_putchar('(');
+	ft_putnbr(a.x);
+	ft_putchar(';');
+	ft_putnbr(a.y);
+	ft_putchar(';');
+	ft_putnbr(a.z);
+	ft_putchar(';');
+	ft_putnbr_base(a.color.mlx, 16, 1);
+	ft_putchar(')');
+	endl();
+}
 void		draw_map(t_mlx win, t_glist **map)
 {
 //	t_glist a, b;
 //
-//	ft_foreach(win, map, vardot);
+//	ft_foreach(win, map, vard);
 //	a = set_dot(100, 200);
 //	a.color.mlx = 0x00ff00;
 //	b = set_dot(500, 700);
 //	b.color.mlx = 0x0000ff;
 //	drawer_grad(win, line(a, b));
-	create_proj(win, map, drw_dt_iso);
+	create_proj_grad(win, map, drw_dt_iso);
 //	ft_foreach_dot(win, map, drw_dt_iso);
 }
