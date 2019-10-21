@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 08:49:56 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/18 04:19:29 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/21 02:28:30 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@ t_glist	set_dot(float x, float y)
 
 	dot.x = x;
 	dot.y = y;
+	return (dot);
+}
+
+t_glist	set_dot_c(float x, float y, int hue)
+{
+	t_glist	dot;
+
+	dot = set_dot(x, y);
+	dot.hue.mlx = hue;
 	return (dot);
 }
 
@@ -45,26 +54,31 @@ void	vardot(char *s, t_glist a)
 
 void	swap_glist(t_glist *a, t_glist *b)
 {
+
 	ft_fswap(&(a->x), &(b->x));
 	ft_fswap(&(a->y), &(b->y));
+	ft_swap(&(a->hue.mlx), &(b->hue.mlx));
 }
 
 t_line	line(t_glist a, t_glist b)
 {
 	t_line	l;
+	t_glist d;
 
-	l.dir = 1;
 	l.d0 = a;
 	l.d1 = b;
-	if (fabsf(l.d1.y - l.d0.y) > fabsf(l.d1.x - l.d0.x))
+	d = set_dot(l.d1.x - l.d0.x, l.d1.y - l.d0.y);
+	l.hue.mlx = WHITE;
+	if (fabsf(d.y) > fabsf(d.x))
 	{
+		l.dir = 0;
+		l.k = (d.x) / (d.y);
 		(a.y > b.y) ? (swap_glist(&l.d0, &l.d1)) : (0);
-		l.k = (l.d1.x - l.d0.x) / (l.d1.y - l.d0.y);
-		l.dir--;
 	}
 	else
 	{
-		l.k = (l.d1.y - l.d0.y) / (l.d1.x - l.d0.x);
+		l.dir = 1;
+		l.k = (d.y) / (d.x);
 		(a.x > b.x) ? (swap_glist(&l.d0, &l.d1)) : (0);
 	}
 	return (l);

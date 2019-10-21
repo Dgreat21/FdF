@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 19:35:58 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/18 06:12:53 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/21 06:13:45 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,27 @@
 
 int		key(int key)
 {
-//	printf("%i", win.f);
-//	win.f = !win.f;
 	if (key == kVK_Escape)
 		exit(0);
-//	else if (key == kVK_ANSI_0)
-//	{
-//		if (win.f)
-//			show_xyz();
-//		else
-//			return (0);
-//	}
+	return (0);
+}
+
+int		key_press(int key, void *param)
+{
+	t_mlx	*win;
+
+	win = (t_mlx *)(param);
+	if (key == kVK_Escape)
+		exit(0);
+	if (key == kVK_ANSI_KeypadPlus)
+		win->scale++;
+	if (key == kVK_ANSI_KeypadPlus)
+		win->scale--;
+	if (key == kVK_ANSI_G)
+	{
+		win->opt.grad = 1;
+		ft_putendl("GGGGGG");
+	}
 	return (0);
 }
 
@@ -63,7 +73,7 @@ int		key(int key)
 //	else
 //		(*cur_dot).y = ((float)(i) - (float)(win.map.y / 2)) * win.scale;
 //	(*cur_dot).z = ft_atoi(str) * (win.scale / 2);
-//	(*cur_dot).color.mlx = 0x0;
+//	(*cur_dot).hue.mlx = 0x0;
 //}
 
 void		xyz(t_mlx win, t_glist dot, char *str, t_glist *cur_dot)
@@ -83,15 +93,12 @@ void		xyz(t_mlx win, t_glist dot, char *str, t_glist *cur_dot)
 		(*cur_dot).y = ((float)(i) - (float)(win.map.y / 2)) * win.scale;
 	(*cur_dot).z = ft_atoi(str) * (win.scale / 2);
 	//(*cur_dot).z = brightness()
-//	if ((*cur_dot).z == 10)
-
-
+	//	if ((*cur_dot).z == 10)
 }
 
-t_mlx	window(int w, int l)
+t_mlx	window_old(int w, int l)
 {
 	t_mlx	win;
-	int		fd;
 
 	win.w = w;
 	win.l = l;
@@ -99,10 +106,33 @@ t_mlx	window(int w, int l)
 	win.mid[Y] = l / 2;
 	win.max_z = 0;
 	win.min_z = 0;
-	win.scale = 20;
-	win.opt.color.mlx = LIME;
+	win.scale = 2;
+	win.opt.hue.mlx = LIME;
 	win.mp = mlx_init();
 	win.wp = mlx_new_window(win.mp, w, l, "fdf");
+	mlx_hook(win.wp, 2, 0L, key_press, (void *)&win);
+//	mlx_key_hook(win.wp, key, (void *)0);
+
+	return (win);
+}
+
+t_mlx	window(int w, int l)
+{
+	t_mlx	win;
+
+	win.w = w;
+	win.l = l;
+	win.mid[X] = w / 2;
+	win.mid[Y] = l / 2;
+	win.max_z = 0;
+	win.min_z = 0;
+	win.scale = 2;
+	win.opt.hue.mlx = LIME;
+//	win.list = map;
+	win.mp = mlx_init();
+	win.wp = mlx_new_window(win.mp, w, l, "fdf");
+//	mlx_hook((&win)->wp, 2, 0L, key_press, (void *)(&win));
 	mlx_key_hook(win.wp, key, (void *)0);
+
 	return (win);
 }

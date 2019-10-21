@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:50:50 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/18 04:52:33 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/21 06:11:27 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define G 0x00FF00
 # define B 0x0000FF
 
+typedef char*	string;
+
 typedef struct		s_argb
 {
 	unsigned char	b;
@@ -60,7 +62,7 @@ typedef struct		s_glist
 	float			x;
 	float			y;
 	float			z;
-	t_color			color;
+	t_color 		hue;
 }					t_glist;
 
 typedef struct		s_opt
@@ -70,7 +72,7 @@ typedef struct		s_opt
 	short			xyz;//show xyz
 	short			dt_mode;//dot mode
 	short			axis;
-	t_color			color;
+	t_color			hue;
 }					t_opt;
 
 enum				e_O{Y, X};
@@ -83,6 +85,7 @@ typedef struct		s_mlx
 	int				l;
 	int				mid[2];
 	t_glist			map;
+	t_glist			**list;
 	unsigned int	scale;
 	struct s_opt	opt;
 	int				max_z;
@@ -91,11 +94,11 @@ typedef struct		s_mlx
 
 typedef struct		s_line
 {
-	struct s_glist	d0;
-	struct s_glist	d1;
+	t_glist			d0;
+	t_glist			d1;
 	short			dir;
 	float			k;
-	t_color			color;
+	t_color			hue;
 }					t_line;
 
 t_mlx				window(int w, int l);
@@ -112,7 +115,11 @@ t_line				line(t_glist a, t_glist b);// t_color color
 
 void				swap_glist(t_glist *a, t_glist *b);
 
+t_glist				set_dot_c(float x, float y, int hue);
+
 void				vardot(char *s, t_glist a);
+
+void				vard(char *s, t_glist a);
 
 t_glist				set_dot(float x, float y);
 
@@ -120,7 +127,7 @@ t_glist				set_xyz(float x, float y, float z);
 
 void				pixel(t_mlx win, t_glist dot, int color);
 
-void				draw_map( t_mlx win, t_glist **map);
+void				draw_map(t_mlx win, t_glist **map);
 
 void				ft_foreach(t_mlx win, t_glist **tab, void (*f)(char *, t_glist));
 

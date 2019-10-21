@@ -193,11 +193,11 @@ int mlx_shaders_font(glsl_info_t *glsl)
   glsl->font_fshader = glCreateShader(GL_FRAGMENT_SHADER);
   source = strdup("#version 110 \n"
 		  "uniform sampler2D texture;"
-		  "uniform vec4 color;"
+		  "uniform vec4 hue;"
 		  "varying vec2 texcoord;"
 		  "void main()"
 		  "{"
-		  " gl_FragColor = color * texture2D(texture, texcoord);"
+		  " gl_FragColor = hue * texture2D(texture, texcoord);"
 		  "}");
   length = strlen(source);
   glShaderSource(glsl->font_fshader, 1, (const GLchar**)&source, &length);

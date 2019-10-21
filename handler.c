@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:53:14 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/18 06:15:50 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/21 06:18:14 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,42 @@ void		free_map(int lines, t_glist **map)
 //	map[i][j].z = ft_atoi(str);
 //}
 
-void		xyz_new(t_glist dot, char *str, t_glist **map, t_glist data)
-{
-	const int	i = dot.y;
-	const int	j = dot.x;
+//void		xyz_new(t_glist dot, char *str, t_glist **map, t_glist data)
+//{
+//	const int	i = dot.y;
+//	const int	j = dot.x;
+//
+//	if (!((int)data.x % 2))
+//		map[i][j].x = ((float)(j - data.x / 2)) * SCALE;
+//	else
+//		map[i][j].x = ((float)(j) - (float)(data.x / 2)) * SCALE;
+//	if (!((int)data.y % 2))
+//		map[i][j].y = ((float)(i - data.y / 2)) * SCALE;
+//	else
+//		map[i][j].y = ((float)(i) - (float)(data.y / 2)) * SCALE;
+//	map[i][j].z = ft_atoi(str) * (SCALE / 2);
+//	if (map[i][j].z >= 10)
+//		map[i][j].hue.mlx = RED;
+//	else
+//		map[i][j].hue.mlx = BLUE;
+//}
 
-	if (!((int)data.x % 2))
-		map[i][j].x = ((float)(j - data.x / 2)) * SCALE;
+void		xyz_new(t_glist dot, char *str, t_glist **map, t_glist data) {
+	const int i = dot.y;
+	const int j = dot.x;
+	if (!((int) data.x % 2))
+		map[i][j].x = ((float) (j - data.x / 2)) * SCALE;
 	else
-		map[i][j].x = ((float)(j) - (float)(data.x / 2)) * SCALE;
-	if (!((int)data.y % 2))
-		map[i][j].y = ((float)(i - data.y / 2)) * SCALE;
+		map[i][j].x = ((float) (j) - (float) (data.x / 2)) * SCALE;
+	if (!((int) data.y % 2))
+		map[i][j].y = ((float) (i - data.y / 2)) * SCALE;
 	else
-		map[i][j].y = ((float)(i) - (float)(data.y / 2)) * SCALE;
+		map[i][j].y = ((float) (i) - (float) (data.y / 2)) * SCALE;
 	map[i][j].z = ft_atoi(str) * (SCALE / 2);
 	if (map[i][j].z >= 10)
-		map[i][j].color.mlx = BLUE;
+		map[i][j].hue.mlx = RED;
 	else
-		map[i][j].color.mlx = WHITE;
+		map[i][j].hue.mlx = BLUE;
 }
 
 t_glist		**allocator_new(t_glist data)
@@ -117,6 +135,32 @@ t_glist		**filler_new(t_glist data, t_glist **map, char **stock)
 	return (map);
 }
 
+t_glist		**filler_new_new(t_glist data, t_glist **map, char **stock)
+	{
+		int		i;
+		int		j;
+		char	**line;
+		t_glist	dot;
+
+		i = -1;
+		while (++i < data.y)
+		{
+			if (data.x != ft_word_counter(stock[i], ' '))
+//		{
+//			free_map(lines);
+//			free_str(line, cols);
+//			free_str(stock, lines);
+				error_notice("wrong coordinates number");
+//		}
+			j = -1;
+			line = ft_strsplit(stock[i], ' ');
+			while (++j < data.x)
+				xyz_new(set_dot(j, i), line[j], map, data);
+//			set_xyz()
+		}
+		return (map);
+	}
+
 t_glist		**checker_new(char *buf, t_mlx *win)
 {
 	char	**stock;
@@ -132,7 +176,7 @@ t_glist		**checker_new(char *buf, t_mlx *win)
 	return (map);
 }
 
-void		reader(int fd)//todo  - получение win.map
+void		reader(int fd)
 {
 	char		buf[BUFF_SIZE];
 	char		**line;
@@ -144,6 +188,7 @@ void		reader(int fd)//todo  - получение win.map
 	map = checker_new(buf, &win);
 	win.opt.dt_mode = 1;
 	win.opt.axis = 0;
+	win.list = map;
 	draw_map(win, map);
 	mlx_loop(win.mp);
 }

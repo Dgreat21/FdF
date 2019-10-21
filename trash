@@ -112,7 +112,7 @@ void	drawer_0(t_mlx win, t_line l)
 //}
 //
 
-//void	draw_wu_line(t_mlx win, t_line l)//todo NORM
+//void	draw_wu_line(t_mlx win, t_line l)
 //{
 //	float	dx;
 //	float	dy;

@@ -222,7 +222,7 @@ int	color_map_1(void *win,int w,int h)
 {
   int	x;
   int	y;
-  int	color;
+  int	hue;
 
   x = w;
   while (x--)
@@ -230,8 +230,8 @@ int	color_map_1(void *win,int w,int h)
       y = h;
       while (y--)
         {
-          color = (x*255)/w+((((w-x)*255)/w)<<16)+(((y*255)/h)<<8);
-	  mlx_pixel_put(mlx,win,x,y,color);
+          hue = (x*255)/w+((((w-x)*255)/w)<<16)+(((y*255)/h)<<8);
+	  mlx_pixel_put(mlx,win,x,y,hue);
         }
     }
 }
@@ -243,7 +243,7 @@ int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int t
   int	y;
   int	opp;
   int	dec;
-  int	color;
+  int	hue;
   int	color2;
   unsigned char *ptr;
 
@@ -257,11 +257,11 @@ int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int t
       while (x--)
         {
 	  if (type==2)
-	    color = (y*255)/w+((((w-x)*255)/w)<<16)
+	    hue = (y*255)/w+((((w-x)*255)/w)<<16)
 	      +(((y*255)/h)<<8);
 	  else
-	    color = (x*255)/w+((((w-x)*255)/w)<<16)+(((y*255)/h)<<8);
-          color2 = mlx_get_color_value(mlx,color);
+	    hue = (x*255)/w+((((w-x)*255)/w)<<16)+(((y*255)/h)<<8);
+          color2 = mlx_get_color_value(mlx,hue);
 	  dec = opp;
 	  while (dec--)
 	    if (endian==local_endian)

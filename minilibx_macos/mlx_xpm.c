@@ -20,7 +20,7 @@ typedef struct  s_xpm_col
 struct  s_col_name
 {
   char  *name;
-  int   color;
+  int   hue;
 };
 
 //extern struct s_col_name mlx_col_name[];
@@ -102,7 +102,7 @@ int	mlx_int_get_text_rgb(char *name, char *end)
   while (mlx_col_name[i].name)
     {
       if (!strcasecmp(mlx_col_name[i].name, name))
-	return (mlx_col_name[i].color);
+	return (mlx_col_name[i].hue);
       i ++;
     }
   return (0);

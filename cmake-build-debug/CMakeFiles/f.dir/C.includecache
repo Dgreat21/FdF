@@ -12,6 +12,16 @@ libft/libft.h
 math.h
 -
 
+/Users/dgreat/Documents/collab/handler.c
+fdf.h
+/Users/dgreat/Documents/collab/fdf.h
+stdlib.h
+-
+errno.h
+-
+stdio.h
+-
+
 /Users/dgreat/Documents/collab/libft/get_next_line.h
 fcntl.h
 -
@@ -29,10 +39,6 @@ get_next_line.h
 /Users/dgreat/Documents/collab/libft/get_next_line.h
 ../minilibx/mlx.h
 /Users/dgreat/Documents/collab/minilibx/mlx.h
-
-/Users/dgreat/Documents/collab/lines.c
-fdf.h
-/Users/dgreat/Documents/collab/fdf.h
 
 /Users/dgreat/Documents/collab/minilibx/mlx.h
 
