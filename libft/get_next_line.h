@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 19:18:34 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/13 19:48:13 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/21 10:49:29 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # include <fcntl.h>
-# define BUFF_SIZE 1000000
+# define BUFF_SIZE 5000000
 
 typedef struct		s_mlist
 {

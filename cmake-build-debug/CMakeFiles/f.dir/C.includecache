@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/Users/dgreat/Documents/collab/fdf.c
+fdf.h
+/Users/dgreat/Documents/collab/fdf.h
+
 /Users/dgreat/Documents/collab/fdf.h
 libft/libft.h
 /Users/dgreat/Documents/collab/libft/libft.h
@@ -21,6 +25,8 @@ errno.h
 -
 stdio.h
 -
+
+/Users/dgreat/Documents/collab/keys.h
 
 /Users/dgreat/Documents/collab/libft/get_next_line.h
 fcntl.h
@@ -40,5 +46,19 @@ get_next_line.h
 ../minilibx/mlx.h
 /Users/dgreat/Documents/collab/minilibx/mlx.h
 
+/Users/dgreat/Documents/collab/lines.c
+fdf.h
+/Users/dgreat/Documents/collab/fdf.h
+
+/Users/dgreat/Documents/collab/main.c
+fdf.h
+/Users/dgreat/Documents/collab/fdf.h
+keys.h
+/Users/dgreat/Documents/collab/keys.h
+
 /Users/dgreat/Documents/collab/minilibx/mlx.h
+
+/Users/dgreat/Documents/collab/struct.c
+fdf.h
+/Users/dgreat/Documents/collab/fdf.h
 

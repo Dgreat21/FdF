@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/f.dir/lines.c.o"
   "CMakeFiles/f.dir/main.c.o"
   "CMakeFiles/f.dir/struct.c.o"
+  "CMakeFiles/f.dir/debug.c.o"
   "f.pdb"
   "f"
 )

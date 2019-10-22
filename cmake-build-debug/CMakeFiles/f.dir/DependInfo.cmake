@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/Users/dgreat/Documents/collab/debug.c" "/Users/dgreat/Documents/collab/cmake-build-debug/CMakeFiles/f.dir/debug.c.o"
   "/Users/dgreat/Documents/collab/fdf.c" "/Users/dgreat/Documents/collab/cmake-build-debug/CMakeFiles/f.dir/fdf.c.o"
   "/Users/dgreat/Documents/collab/handler.c" "/Users/dgreat/Documents/collab/cmake-build-debug/CMakeFiles/f.dir/handler.c.o"
   "/Users/dgreat/Documents/collab/lines.c" "/Users/dgreat/Documents/collab/cmake-build-debug/CMakeFiles/f.dir/lines.c.o"

@@ -149,6 +149,33 @@ fdf/fast:
 	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/build
 .PHONY : fdf/fast
 
+debug.o: debug.c.o
+
+.PHONY : debug.o
+
+# target to build an object file
+debug.c.o:
+	$(MAKE) -f CMakeFiles/f.dir/build.make CMakeFiles/f.dir/debug.c.o
+.PHONY : debug.c.o
+
+debug.i: debug.c.i
+
+.PHONY : debug.i
+
+# target to preprocess a source file
+debug.c.i:
+	$(MAKE) -f CMakeFiles/f.dir/build.make CMakeFiles/f.dir/debug.c.i
+.PHONY : debug.c.i
+
+debug.s: debug.c.s
+
+.PHONY : debug.s
+
+# target to generate assembly for a file
+debug.c.s:
+	$(MAKE) -f CMakeFiles/f.dir/build.make CMakeFiles/f.dir/debug.c.s
+.PHONY : debug.c.s
+
 fdf.o: fdf.c.o
 
 .PHONY : fdf.o
@@ -2509,6 +2536,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... f"
 	@echo "... fdf"
+	@echo "... debug.o"
+	@echo "... debug.i"
+	@echo "... debug.s"
 	@echo "... fdf.o"
 	@echo "... fdf.i"
 	@echo "... fdf.s"

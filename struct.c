@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 08:49:56 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/21 02:28:30 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/22 20:08:12 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,19 @@ t_glist	set_dot_c(float x, float y, int hue)
 	return (dot);
 }
 
-t_glist	set_xyz(float x, float y, float z)
+t_glist	set_xyz(float x, float y, char *z_color, int color)
 {
-	t_glist	dot;
+	t_glist		dot;
+	t_string	*cache;
 
 	dot.x = x;
 	dot.y = y;
-	dot.z = z;
+	cache = ft_strsplit(z_color, ',');
+	dot.z = ft_atoi(cache[0]);
+	if (cache[1])
+		dot.hue.mlx = ft_atoi_base(cache[1] + 2, 16);
+	else
+		dot.hue.mlx = color;
 	return (dot);
 }
 
@@ -68,7 +74,6 @@ t_line	line(t_glist a, t_glist b)
 	l.d0 = a;
 	l.d1 = b;
 	d = set_dot(l.d1.x - l.d0.x, l.d1.y - l.d0.y);
-	l.hue.mlx = WHITE;
 	if (fabsf(d.y) > fabsf(d.x))
 	{
 		l.dir = 0;

@@ -140,6 +140,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/dgreat/Documents/collab/debug.c">
+			<Option target="f"/>
+		</Unit>
 		<Unit filename="/Users/dgreat/Documents/collab/fdf.c">
 			<Option target="f"/>
 		</Unit>

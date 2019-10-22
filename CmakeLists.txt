@@ -15,7 +15,7 @@ add_executable(f
         handler.c
         lines.c
         main.c
-        struct.c)
+        struct.c debug.c)
 
 add_compile_options(-Wall -Wextra -Werror)
 
