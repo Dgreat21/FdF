@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 17:16:37 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/25 14:20:35 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/11/09 09:26:17 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ void	coloring(int key, t_mlx *win)
 
 void	rotate(int key, t_mlx *win)
 {
-	if (key == kVK_ANSI_Keypad2)
-		win->roty += DEFAULT_ROTATION;
-	if (key == kVK_ANSI_Keypad4)
-		win->rotx -= DEFAULT_ROTATION;
 	if (key == kVK_ANSI_Keypad6)
-		win->rotx += DEFAULT_ROTATION;
+		win->roty += DEFAULT_ROTATION;
 	if (key == kVK_ANSI_Keypad8)
+		win->rotx -= DEFAULT_ROTATION;
+	if (key == kVK_ANSI_Keypad2)
+		win->rotx += DEFAULT_ROTATION;
+	if (key == kVK_ANSI_Keypad4)
 		win->roty -= DEFAULT_ROTATION;
 	if (key == kVK_ANSI_Keypad7)
 		win->rotz += DEFAULT_ROTATION;

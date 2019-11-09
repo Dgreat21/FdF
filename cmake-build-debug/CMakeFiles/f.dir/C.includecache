@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/dgreat/Documents/FdF/fdf.h
+libft/inc/libft.h
+/Users/dgreat/Documents/FdF/libft/inc/libft.h
+keys.h
+/Users/dgreat/Documents/FdF/keys.h
+/usr/local/include/mlx.h
+-
+math.h
+-
+
+/Users/dgreat/Documents/FdF/keys.h
+
+/Users/dgreat/Documents/FdF/libft/inc/get_next_line.h
+fcntl.h
+-
+
+/Users/dgreat/Documents/FdF/libft/inc/libft.h
+unistd.h
+-
+stdlib.h
+-
+string.h
+-
+stdio.h
+-
+get_next_line.h
+/Users/dgreat/Documents/FdF/libft/inc/get_next_line.h
+
+/Users/dgreat/Documents/FdF/lines.c
+fdf.h
+/Users/dgreat/Documents/FdF/fdf.h
+
+/usr/local/include/mlx.h
+

@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 03:26:25 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/25 12:16:59 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/11/09 09:38:34 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,59 @@ void		grad_init(t_mlx *win)
 	}
 }
 
+int			check_line(t_point a, t_point b)
+{
+	if (a.x < 0)
+		return (0);
+	if (a.x > WIDE)
+		return (0);
+	if (a.y < 0)
+		return (0);
+	if (a.y > LENGTH)
+		return (0);
+	if (b.x < 0)
+		return (0);
+	if (b.x > WIDE)
+		return (0);
+	if (b.y < 0)
+		return (0);
+	if (b.y > LENGTH)
+		return (0);
+	return (1);
+}
+
+void		slicer(t_point ij, t_mlx *win, t_point (*f)(t_mlx, t_point),
+				  void (*draw)(t_mlx*, t_line))
+{
+	t_point	a;
+	t_point	b;
+
+	a = f(*win, win->list[(int)ij.x][(int)(ij.x)]);
+	b = f(*win, win->list[(int)(ij.x)][(int)(ij.y + 1)]);
+	if (check_line(a, b))
+		draw(win, line(a, b));
+	b = f(*win, win->list[(int)(ij.x + 1)][(int)(ij.y)]);
+	if (check_line(a, b))
+		draw(win, line(a, b));
+}
+
+void		slice(t_point ij, t_mlx *win, t_point (*f)(t_mlx, t_point),
+									void (*draw)(t_mlx*, t_line))
+{
+	t_point	a;
+	t_point	b;
+
+	a = f(*win, win->list[(int)ij.x][(int)ij.y]);
+	b = f(*win, win->list[(int)ij.x][(int)ij.y + 1]);
+	if (check_line(a, b))
+		draw(win, line(a, b));
+	b = f(*win, win->list[(int)ij.x + 1][(int)ij.y]);
+	if (check_line(a, b))
+		draw(win, line(a, b));
+}
+
+
+
 void		create_proj(t_mlx *win, t_point **tab,
 		t_point (*f)(t_mlx, t_point), void (*draw)(t_mlx*, t_line))
 {
@@ -67,6 +120,37 @@ void		create_proj(t_mlx *win, t_point **tab,
 	}
 }
 
+void		create_proja(t_mlx *win, t_point (*f)(t_mlx, t_point),
+											void (*draw)(t_mlx*, t_line))
+{
+	int		i;
+	int		j;
+	t_point	a;
+	t_point	b;
+
+	i = -1;
+	while (++i < win->map.y - 1)
+	{
+		j = -1;
+		while (++j < win->map.x - 1)
+		{
+			slice(set_dot(i, j), win, f, draw);
+		}
+		a = f(*win, win->list[i][j]);
+		b = f(*win, win->list[i + 1][j]);
+		if (check_line(a, b))
+			draw(win, line(a, b));
+	}
+	j = -1;
+	while (++j < win->map.x - 1)
+	{
+		a = f(*win, win->list[i][j]);
+		b = f(*win, win->list[i][j + 1]);
+		if (check_line(a, b))
+			draw(win, line(a, b));
+	}
+}
+
 void		draw_map(t_mlx *win, t_point **map)
 {
 	const void	*projection = NULL;
@@ -87,5 +171,6 @@ void		draw_map(t_mlx *win, t_point **map)
 		draw = drawer;
 	else
 		draw = brez;
-	create_proj(win, map, projection, draw);
+	create_proja(win, projection, draw);
+//	create_proj(win, map, projection, draw);
 }

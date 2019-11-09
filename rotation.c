@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 11:32:44 by dgreat            #+#    #+#             */
-/*   Updated: 2019/10/25 12:32:49 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/11/09 09:28:32 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_point		rotate_y(double angle, t_point dot)
 	d.z = -dot.x * sin(angle) + dot.z * cos(angle);
 	return (d);
 }
+//todo: разобраться с поворотом по z, оставить это как бонус
 
 t_point		rotate_z(double angle, t_point dot)
 {
