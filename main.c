@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 19:35:58 by dgreat            #+#    #+#             */
-/*   Updated: 2019/11/09 08:05:35 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/11/22 20:16:17 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	options(t_mlx *win)
 	win->opt.axis = 1;
 	win->low.hex_color = BLUE;
 	win->high.hex_color = RED;
-	win->opt.hue.hex_color = WHITE;
+	win->opt.hue.hex_color = LIME;
 	win->opt.color = 0;
 	win->scale = 2;
 	win->opt.left_right = 0;

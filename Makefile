@@ -7,7 +7,7 @@ VPATH = .:libft:/usr/local/include:/usr/local/lib
 
 override CC = gcc
 
-override CFLAGS = -O2 -I. -Ilibft -Wall -Wextra -Werror
+override CFLAGS = -I. -Ilibft -Wall -Wextra -Werror
 
 MLXFLAGS = 	-I /usr/local/include \
 			-L /usr/local/lib -lmlx \

@@ -6,7 +6,7 @@
 /*   By: dgreat <dgreat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 21:50:50 by dgreat            #+#    #+#             */
-/*   Updated: 2019/11/09 08:05:35 by dgreat           ###   ########.fr       */
+/*   Updated: 2019/10/25 14:28:22 by dgreat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** ************************************************************************** **
 */
 
-# include "libft/inc/libft.h"
+# include "libft/libft.h"
 # include "keys.h"
 # include "/usr/local/include/mlx.h"
 # include <math.h>
